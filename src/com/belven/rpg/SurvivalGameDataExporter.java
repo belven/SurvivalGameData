@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import com.belven.rpg.items.Armour;
 import com.belven.rpg.items.ArmourPosition;
 import com.belven.rpg.items.CharacterType;
+import com.belven.rpg.items.ContainerData;
 import com.belven.rpg.items.Item;
 import com.belven.rpg.items.ItemData;
 import com.belven.rpg.items.Loadout;
@@ -20,7 +21,7 @@ import com.belven.rpg.items.Weapon;
 import com.belven.rpg.items.WeaponData;
 import com.opencsv.CSVWriter;
 
-public class App {
+public class SurvivalGameDataExporter {
 	static ArrayList<RowData> tablesRows = new ArrayList<>();
 	static String tablesFolder = "D:\\Unreal Projects\\SurvivalTest\\Source\\Tables";
 
@@ -30,15 +31,16 @@ public class App {
 		tablesRows.add(MeleeWeapon.CreateMeleeWeapon(new ItemData("Test Melee Weapon 2", "Melee 2", 1), new WeaponData(500, 30, 1, false), 300));
 		tablesRows.add(ProjectileWeapon.CreateProjectileWeapon(new ItemData("Test Projectile Weapon 1", "Projectile 1", 1), new WeaponData(500, 30, 0.1f, false), 1, new ProjectileWeaponData("Projectile", 50, 1.2f)));
 		
-		// Armour
-		tablesRows.add(Armour.CreateArmour(new ItemData("Headpiece", "Head", 1), ArmourPosition.Head));
-		tablesRows.add(Armour.CreateArmour(new ItemData("Chestpiece", "Chest", 1), ArmourPosition.Chest));
-		tablesRows.add(Armour.CreateArmour(new ItemData("Left Arm", "Arm", 1), ArmourPosition.LeftArm));
-		tablesRows.add(Armour.CreateArmour(new ItemData("Right Arm", "Arm", 1), ArmourPosition.RightArm));
-		tablesRows.add(Armour.CreateArmour(new ItemData("Left Leg", "Leg", 1), ArmourPosition.LeftLeg));
-		tablesRows.add(Armour.CreateArmour(new ItemData("Right Leg", "Leg", 1), ArmourPosition.RightLeg));
+		tablesRows.add(ContainerData.CreateContainerData(0, "Zero Base"));
+		tablesRows.add(ContainerData.CreateContainerData(5, "Five base"));
+		tablesRows.add(ContainerData.CreateContainerData(10, "Ten base"));
 		
-		tablesRows.add(Loadout.CreateLoadout(new LoadoutData(1, 4, 5, 6, 9, 10, 7,  8, 0, 0, 0, 1000, 800, CharacterType.Enemy)));
+		// Armour
+		tablesRows.add(Armour.CreateArmour(new ItemData("Headpiece", "Head", 1), ArmourPosition.Head, 1));
+		tablesRows.add(Armour.CreateArmour(new ItemData("Chestpiece", "Chest", 2), ArmourPosition.Chest, 3));
+		tablesRows.add(Armour.CreateArmour(new ItemData("Legs", "Legs", 1), ArmourPosition.Legs, 2));
+		
+		tablesRows.add(Loadout.CreateLoadout(new LoadoutData(1, 4, 5, 6, 9, 1000, 800, CharacterType.Enemy)));
 	}
 
 	public static void SaveData(ArrayList<String[]> data, String filePath) {
@@ -61,6 +63,7 @@ public class App {
 		SaveRowData(ProjectileWeapon.ProjectileWeapons);
 		SaveRowData(Armour.armour);
 		SaveRowData(Loadout.loadouts);
+		SaveRowData(ContainerData.ContainerData);
 	}
 
 	static <T extends RowData> void SaveRowData(ArrayList<T> data) {

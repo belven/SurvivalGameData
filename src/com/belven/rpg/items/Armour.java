@@ -9,6 +9,7 @@ public class Armour extends RowData {
 	int itemID;
 	ArmourPosition armourPosition;
 	int resistance;
+	int containerID;
 
 	public Armour() {
 		super(ArmourTable);
@@ -19,17 +20,18 @@ public class Armour extends RowData {
 		armour.add(this);
 	}
 	
-	public static Armour CreateArmour(ItemData itemData,  ArmourPosition armourPosition) {		
-		return CreateArmour(itemData, armourPosition, 0);
+	public static Armour CreateArmour(ItemData itemData,  ArmourPosition armourPosition, int containerID) {		
+		return CreateArmour(itemData, armourPosition, containerID, 0);
 	}
 
-	public static Armour CreateArmour(ItemData itemData,  ArmourPosition armourPosition, int resistance) {
+	public static Armour CreateArmour(ItemData itemData,  ArmourPosition armourPosition, int containerID, int resistance) {
 		itemData.type = ItemType.Armour;
 		Item i = Item.CreateItem(itemData);
 		Armour a = new Armour();
 		a.itemID = i.ID;
 		a.armourPosition = armourPosition;
 		a.resistance = resistance;		
+		a.containerID = containerID;
 		return a;
 	}
 
@@ -38,7 +40,9 @@ public class Armour extends RowData {
 		ArrayList<String> rowData = new ArrayList<String>();
 		rowData.add(GetString(ID));
 		rowData.add(GetString(itemID));
+		rowData.add(GetString(containerID));
 		rowData.add(armourPosition.toString());
+		rowData.add(GetString(resistance));
 		return rowData.toArray(new String[0]);
 	}
 

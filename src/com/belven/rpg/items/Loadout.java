@@ -30,13 +30,7 @@ public class Loadout extends RowData {
 		rowData.add(GetString(data.weaponID));
 		rowData.add(GetString(data.headArmourID));
 		rowData.add(GetString(data.chestArmourID));
-		rowData.add(GetString(data.leftLegArmourID));
-		rowData.add(GetString(data.rightLegArmourID));
-		rowData.add(GetString(data.leftArmArmourID));
-		rowData.add(GetString(data.rightArmArmourID));
-		rowData.add(GetString(data.abilityOneID));
-		rowData.add(GetString(data.abilityTwoID));
-		rowData.add(GetString(data.abilityThreeID));
+		rowData.add(GetString(data.legsArmourID));
 		rowData.add(GetString(data.health));
 		rowData.add(GetString(data.moveSpeed));
 		return rowData.toArray(new String[0]);
