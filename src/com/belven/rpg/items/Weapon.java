@@ -27,6 +27,7 @@ public class Weapon extends RowData {
 		rowData.add(GetString(ID));
 		rowData.add(GetString(GetData().itemID));
 		rowData.add(GetData().type.toString());
+		rowData.add(GetData().gearType.toString());
 		rowData.add(GetString(GetData().range));
 		rowData.add(GetString(GetData().healthChange));
 		rowData.add(GetString(GetData().useRate));

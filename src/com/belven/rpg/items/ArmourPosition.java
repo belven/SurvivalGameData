@@ -1,5 +1,5 @@
 package com.belven.rpg.items;
 
 public enum ArmourPosition {
-	Head, Chest, Legs
+	Head, Chest, Legs, Vest
 }
