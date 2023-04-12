@@ -7,6 +7,9 @@ import java.util.ArrayList;
 import com.belven.rpg.items.Armour;
 import com.belven.rpg.items.ArmourPosition;
 import com.belven.rpg.items.CharacterType;
+import com.belven.rpg.items.Consumable;
+import com.belven.rpg.items.ConsumableData;
+import com.belven.rpg.items.ConsumableType;
 import com.belven.rpg.items.ContainerData;
 import com.belven.rpg.items.GearType;
 import com.belven.rpg.items.Item;
@@ -34,15 +37,15 @@ public class SurvivalGameDataExporter {
 		tablesRows.add(MeleeWeapon.CreateMeleeWeapon(new ItemData("Knife", iconFolder + "knife.knife'", 2), new WeaponData(500, 50, 1, false, GearType.Secondary_Weapon), 300));
 		tablesRows.add(MeleeWeapon.CreateMeleeWeapon(new ItemData("Axe", iconFolder + "axe.axe'", 1), new WeaponData(500, 100, 2, false, GearType.Secondary_Weapon), 300));
 
-		float smgFireRate = (1.0f / 5.0f);
+		float smgFireRate = (1.0f / 15.0f);
 
-		tablesRows.add(ProjectileWeapon.CreateProjectileWeapon(new ItemData("SMG", iconFolder + "smg.smg'", 1), new WeaponData(1500, health / (3 / smgFireRate), smgFireRate, false, GearType.Primary_Weapon), 1,
-				new ProjectileWeaponData("Projectile", 50, 1.2f)));
+		tablesRows.add(ProjectileWeapon.CreateProjectileWeapon(new ItemData("SMG", iconFolder + "smg.smg'", 1),
+				new WeaponData(1500, health / (3 / smgFireRate), smgFireRate, false, GearType.Primary_Weapon), 1, new ProjectileWeaponData("Projectile", 50, 1.2f)));
 
 		float akFireRate = (1.0f / 4.0f);
 
-		tablesRows.add(ProjectileWeapon.CreateProjectileWeapon(new ItemData("AK", iconFolder + "ak.ak'", 1), new WeaponData(1500, health / (3 / akFireRate), akFireRate, false, GearType.Primary_Weapon), 1,
-				new ProjectileWeaponData("Projectile", 50, 1.2f)));
+		tablesRows.add(ProjectileWeapon.CreateProjectileWeapon(new ItemData("AK", iconFolder + "ak.ak'", 1),
+				new WeaponData(1500, health / (3 / akFireRate), akFireRate, false, GearType.Primary_Weapon), 1, new ProjectileWeaponData("Projectile", 50, 1.2f)));
 
 		tablesRows.add(ContainerData.CreateContainerData(0, "Zero Base"));
 		tablesRows.add(ContainerData.CreateContainerData(5, "Five base"));
@@ -55,7 +58,17 @@ public class SurvivalGameDataExporter {
 		tablesRows.add(Armour.CreateArmour(new ItemData("Legs", iconFolder + "legs.legs'", 1), ArmourPosition.Legs, 1));
 		tablesRows.add(Armour.CreateArmour(new ItemData("Vest", iconFolder + "vest.vest'", 1), ArmourPosition.Vest, 1));
 
-		tablesRows.add(Loadout.CreateLoadout(new LoadoutData(1, 2, 3, 4, 5, health, 800, CharacterType.Enemy)));
+		// Loadouts
+		tablesRows.add(Loadout.CreateLoadout(new LoadoutData(1, 2, 4, 5, 6, health, 800, CharacterType.Enemy)));
+
+		// Resources
+		tablesRows.add(Item.CreateItem(new ItemData("Wood", iconFolder + "wood.wood'", 20)));
+		tablesRows.add(Item.CreateItem(new ItemData("Nails", iconFolder + "nails.nails'", 20)));
+
+		// Consumables
+		tablesRows.add(Consumable.CreateConsumable(new ItemData("Bandage", iconFolder + "bandage.bandage'", 5), new ConsumableData(ConsumableType.Medical, 20)));
+		tablesRows.add(Consumable.CreateConsumable(new ItemData("Soda", iconFolder + "soda.soda'", 5), new ConsumableData(ConsumableType.Drink, 20)));
+		tablesRows.add(Consumable.CreateConsumable(new ItemData("Sandwich", iconFolder + "sandwich.sandwich'", 5), new ConsumableData(ConsumableType.Food, 20)));
 	}
 
 	public static void SaveData(ArrayList<String[]> data, String filePath) {
@@ -79,6 +92,7 @@ public class SurvivalGameDataExporter {
 		SaveRowData(Armour.armour);
 		SaveRowData(Loadout.loadouts);
 		SaveRowData(ContainerData.ContainerData);
+		SaveRowData(Consumable.Consumables);
 	}
 
 	static <T extends RowData> void SaveRowData(ArrayList<T> data) {
