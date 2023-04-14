@@ -1,4 +1,4 @@
-package com.belven.rpg.items;
+package com.belven.rpg.weapons;
 
 public enum WeaponType {
 	Melee,

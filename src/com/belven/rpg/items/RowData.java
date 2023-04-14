@@ -1,7 +1,7 @@
 package com.belven.rpg.items;
 
 public abstract class RowData {
-	int ID;
+	public int ID;
 	public static String COMMA = ",";
 	public String tableName;
 	

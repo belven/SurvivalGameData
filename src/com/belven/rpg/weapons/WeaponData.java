@@ -1,4 +1,6 @@
-package com.belven.rpg.items;
+package com.belven.rpg.weapons;
+
+import com.belven.rpg.items.GearType;
 
 public class WeaponData {
 	int itemID;

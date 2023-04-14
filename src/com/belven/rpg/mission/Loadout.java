@@ -1,6 +1,9 @@
-package com.belven.rpg.items;
+package com.belven.rpg.mission;
 
 import java.util.ArrayList;
+
+import com.belven.rpg.items.Item;
+import com.belven.rpg.items.RowData;
 
 public class Loadout extends RowData {
 	public LoadoutData data;
@@ -26,14 +29,24 @@ public class Loadout extends RowData {
 		ArrayList<String> rowData = new ArrayList<String>();
 		rowData.add(GetString(ID));
 		rowData.add(data.type.toString());
-		rowData.add(GetString(data.entityID));
-		rowData.add(GetString(data.weaponID));
-		rowData.add(GetString(data.headArmourID));
-		rowData.add(GetString(data.chestArmourID));
-		rowData.add(GetString(data.legsArmourID));
+		rowData.add(data.name);
+		rowData.add(GetString(GetItemByName(data.weapon)));
+		rowData.add(GetString(GetItemByName(data.headArmour)));
+		rowData.add(GetString(GetItemByName(data.chestArmour)));
+		rowData.add(GetString(GetItemByName(data.vestArmour)));
+		rowData.add(GetString(GetItemByName(data.legsArmour)));
 		rowData.add(GetString(data.health));
 		rowData.add(GetString(data.moveSpeed));
 		return rowData.toArray(new String[0]);
+	}
+	
+	public int GetItemByName(String name) {
+		for(Item i : Item.items) {		
+			if(i.GetData().name.equals(name))
+				return i.ID;
+		}
+		
+		return -1;
 	}
 
 	@Override

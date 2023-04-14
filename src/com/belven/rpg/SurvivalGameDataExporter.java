@@ -14,15 +14,20 @@ import com.belven.rpg.items.ContainerData;
 import com.belven.rpg.items.GearType;
 import com.belven.rpg.items.Item;
 import com.belven.rpg.items.ItemData;
-import com.belven.rpg.items.Loadout;
-import com.belven.rpg.items.LoadoutData;
-import com.belven.rpg.items.MeleeWeapon;
-import com.belven.rpg.items.ProjectileWeapon;
-import com.belven.rpg.items.ProjectileWeaponData;
-import com.belven.rpg.items.RangedWeapon;
 import com.belven.rpg.items.RowData;
-import com.belven.rpg.items.Weapon;
-import com.belven.rpg.items.WeaponData;
+import com.belven.rpg.mission.Loadout;
+import com.belven.rpg.mission.LoadoutData;
+import com.belven.rpg.mission.Mission;
+import com.belven.rpg.mission.MissionData;
+import com.belven.rpg.mission.MissionLoadout;
+import com.belven.rpg.mission.MissionLoadoutData;
+import com.belven.rpg.mission.MissionType;
+import com.belven.rpg.weapons.MeleeWeapon;
+import com.belven.rpg.weapons.ProjectileWeapon;
+import com.belven.rpg.weapons.ProjectileWeaponData;
+import com.belven.rpg.weapons.RangedWeapon;
+import com.belven.rpg.weapons.Weapon;
+import com.belven.rpg.weapons.WeaponData;
 import com.opencsv.CSVWriter;
 
 public class SurvivalGameDataExporter {
@@ -34,18 +39,21 @@ public class SurvivalGameDataExporter {
 		int health = 100;
 
 		// Weapons
-		tablesRows.add(MeleeWeapon.CreateMeleeWeapon(new ItemData("Knife", iconFolder + "knife.knife'", 2), new WeaponData(500, 50, 1, false, GearType.Secondary_Weapon), 300));
-		tablesRows.add(MeleeWeapon.CreateMeleeWeapon(new ItemData("Axe", iconFolder + "axe.axe'", 1), new WeaponData(500, 100, 2, false, GearType.Secondary_Weapon), 300));
+		tablesRows.add(MeleeWeapon.CreateMeleeWeapon(new ItemData("Knife", iconFolder + "knife.knife'", 2), new WeaponData(100, 50, 1, false, GearType.Secondary_Weapon), 300));
+		tablesRows.add(MeleeWeapon.CreateMeleeWeapon(new ItemData("Axe", iconFolder + "axe.axe'", 1), new WeaponData(100, 100, 2, false, GearType.Secondary_Weapon), 300));
 
 		float smgFireRate = (1.0f / 15.0f);
 
 		tablesRows.add(ProjectileWeapon.CreateProjectileWeapon(new ItemData("SMG", iconFolder + "smg.smg'", 1),
-				new WeaponData(1500, health / (3 / smgFireRate), smgFireRate, false, GearType.Primary_Weapon), 1, new ProjectileWeaponData("Projectile", 50, 1.2f)));
+				new WeaponData(1200, health / (3 / smgFireRate), smgFireRate, false, GearType.Primary_Weapon), 1, new ProjectileWeaponData("Projectile", 60, 2f)));
 
 		float akFireRate = (1.0f / 4.0f);
 
 		tablesRows.add(ProjectileWeapon.CreateProjectileWeapon(new ItemData("AK", iconFolder + "ak.ak'", 1),
-				new WeaponData(1500, health / (3 / akFireRate), akFireRate, false, GearType.Primary_Weapon), 1, new ProjectileWeaponData("Projectile", 50, 1.2f)));
+				new WeaponData(2000, health / (3 / akFireRate), akFireRate, false, GearType.Primary_Weapon), 1, new ProjectileWeaponData("Projectile", 30, 1f)));
+
+		tablesRows.add(ProjectileWeapon.CreateProjectileWeapon(new ItemData("Pistol", iconFolder + "pistol.pistol'", 1), new WeaponData(1500, 25, 0.4f, false, GearType.Sidearm), 1,
+				new ProjectileWeaponData("Projectile", 8, 0.8f)));
 
 		tablesRows.add(ContainerData.CreateContainerData(0, "Zero Base"));
 		tablesRows.add(ContainerData.CreateContainerData(5, "Five base"));
@@ -58,9 +66,6 @@ public class SurvivalGameDataExporter {
 		tablesRows.add(Armour.CreateArmour(new ItemData("Legs", iconFolder + "legs.legs'", 1), ArmourPosition.Legs, 1));
 		tablesRows.add(Armour.CreateArmour(new ItemData("Vest", iconFolder + "vest.vest'", 1), ArmourPosition.Vest, 1));
 
-		// Loadouts
-		tablesRows.add(Loadout.CreateLoadout(new LoadoutData(1, 2, 4, 5, 6, health, 800, CharacterType.Enemy)));
-
 		// Resources
 		tablesRows.add(Item.CreateItem(new ItemData("Wood", iconFolder + "wood.wood'", 20)));
 		tablesRows.add(Item.CreateItem(new ItemData("Nails", iconFolder + "nails.nails'", 20)));
@@ -69,6 +74,21 @@ public class SurvivalGameDataExporter {
 		tablesRows.add(Consumable.CreateConsumable(new ItemData("Bandage", iconFolder + "bandage.bandage'", 5), new ConsumableData(ConsumableType.Medical, 20)));
 		tablesRows.add(Consumable.CreateConsumable(new ItemData("Soda", iconFolder + "soda.soda'", 5), new ConsumableData(ConsumableType.Drink, 20)));
 		tablesRows.add(Consumable.CreateConsumable(new ItemData("Sandwich", iconFolder + "sandwich.sandwich'", 5), new ConsumableData(ConsumableType.Food, 20)));
+
+		// Loadouts
+		tablesRows.add(Loadout.CreateLoadout(new LoadoutData("Player", "Pistol", "", "Chestpiece", "", "Legs", health, 800, CharacterType.Player)));
+		tablesRows.add(Loadout.CreateLoadout(new LoadoutData("AI Base", "SMG", "Headpiece", "Chestpiece", "", "Legs", health, 800, CharacterType.Enemy)));
+
+		// Medical Loadouts
+		tablesRows.add(Loadout.CreateLoadout(new LoadoutData("Medical Staff", "Pistol", "", "Chestpiece", "", "Legs", health, 800, CharacterType.Enemy)));
+		tablesRows.add(Loadout.CreateLoadout(new LoadoutData("Medical Guards", "AK", "", "Chestpiece", "Vest", "Legs", health, 800, CharacterType.Enemy)));
+
+		// Missions
+		tablesRows.add(Mission.CreateMission(new MissionData(MissionType.Medical)));
+
+		// Mission Loadouts
+		tablesRows.add(MissionLoadout.CreateMissonLoadout(new MissionLoadoutData(MissionType.Medical, "Medical Staff")));
+		tablesRows.add(MissionLoadout.CreateMissonLoadout(new MissionLoadoutData(MissionType.Medical, "Medical Guards")));
 	}
 
 	public static void SaveData(ArrayList<String[]> data, String filePath) {
@@ -93,6 +113,8 @@ public class SurvivalGameDataExporter {
 		SaveRowData(Loadout.loadouts);
 		SaveRowData(ContainerData.ContainerData);
 		SaveRowData(Consumable.Consumables);
+		SaveRowData(Mission.Missions);
+		SaveRowData(MissionLoadout.MissionLoadouts);
 	}
 
 	static <T extends RowData> void SaveRowData(ArrayList<T> data) {

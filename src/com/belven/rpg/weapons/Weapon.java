@@ -1,6 +1,8 @@
-package com.belven.rpg.items;
+package com.belven.rpg.weapons;
 
 import java.util.ArrayList;
+
+import com.belven.rpg.items.RowData;
 
 public class Weapon extends RowData {
 	public static ArrayList<Weapon> weapons = new ArrayList<>();

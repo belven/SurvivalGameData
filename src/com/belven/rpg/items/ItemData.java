@@ -1,10 +1,10 @@
 package com.belven.rpg.items;
 
 public class ItemData {
-	protected String name;
-	protected String mesh;
-	protected int maxStatck;
-	protected ItemType type = ItemType.Resource;		
+	public String name;
+	public String mesh;
+	public int maxStatck;
+	public ItemType type = ItemType.Resource;		
 
 	public ItemData(String inName, String inMesh, int inMaxStatck) {
 		name = inName;
