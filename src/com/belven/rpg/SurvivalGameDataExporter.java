@@ -40,8 +40,8 @@ public class SurvivalGameDataExporter {
 		int health = 100;
 
 		// Weapons
-		tablesRows.add(MeleeWeapon.CreateMeleeWeapon(new ItemData("Knife", iconFolder + "knife.knife'", "", 2), new WeaponData(100, 60, 1, false, GearType.Secondary_Weapon), 300));
-		tablesRows.add(MeleeWeapon.CreateMeleeWeapon(new ItemData("Axe", iconFolder + "axe.axe'", "", 1), new WeaponData(100, 100, 2, false, GearType.Secondary_Weapon), 300));
+		tablesRows.add(MeleeWeapon.CreateMeleeWeapon(new ItemData("Knife", iconFolder + "knife.knife'", weaponsMeshFolder + "Knife.Knife'", 2), new WeaponData(100, 60, 1, false, GearType.Secondary_Weapon), 300));
+		tablesRows.add(MeleeWeapon.CreateMeleeWeapon(new ItemData("Axe", iconFolder + "axe.axe'", weaponsMeshFolder + "Axe.Axe'", 1), new WeaponData(100, 100, 2, false, GearType.Secondary_Weapon), 300));
 
 		tablesRows.add(ProjectileWeapon.CreateProjectileWeapon(new ItemData("SMG", iconFolder + "smg.smg'", weaponsMeshFolder + "SMG.SMG'", 1), new WeaponData(1200, 11, 0.2f, false, GearType.Primary_Weapon), 1,
 				new ProjectileWeaponData("Projectile", 60, 2f)));
@@ -49,7 +49,7 @@ public class SurvivalGameDataExporter {
 		tablesRows.add(ProjectileWeapon.CreateProjectileWeapon(new ItemData("AK", iconFolder + "ak.ak'", weaponsMeshFolder + "AK.AK'", 1), new WeaponData(2000, 22, 0.25f, false, GearType.Primary_Weapon), 1,
 				new ProjectileWeaponData("Projectile", 30, 1f)));
 
-		tablesRows.add(ProjectileWeapon.CreateProjectileWeapon(new ItemData("Pistol", iconFolder + "pistol.pistol'", "", 1), new WeaponData(1500, 25, 0.4f, false, GearType.Sidearm), 1,
+		tablesRows.add(ProjectileWeapon.CreateProjectileWeapon(new ItemData("Pistol", iconFolder + "pistol.pistol'", "Pistol.Pistol'", 1), new WeaponData(1500, 25, 0.4f, false, GearType.Sidearm), 1,
 				new ProjectileWeaponData("Projectile", 8, 0.8f)));
 
 		tablesRows.add(ContainerData.CreateContainerData(0, "Zero Base"));
