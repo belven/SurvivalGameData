@@ -34,25 +34,22 @@ public class SurvivalGameDataExporter {
 	static ArrayList<RowData> tablesRows = new ArrayList<>();
 	static String tablesFolder = "D:\\Unreal Projects\\SurvivalTest\\Source\\Tables";
 	static String iconFolder = "Texture2D'/Game/FirstPerson/Icons/";
+	static String weaponsMeshFolder = "StaticMesh'/Game/FirstPerson/Weapons/";
 
 	static {
 		int health = 100;
 
 		// Weapons
-		tablesRows.add(MeleeWeapon.CreateMeleeWeapon(new ItemData("Knife", iconFolder + "knife.knife'", 2), new WeaponData(100, 50, 1, false, GearType.Secondary_Weapon), 300));
-		tablesRows.add(MeleeWeapon.CreateMeleeWeapon(new ItemData("Axe", iconFolder + "axe.axe'", 1), new WeaponData(100, 100, 2, false, GearType.Secondary_Weapon), 300));
+		tablesRows.add(MeleeWeapon.CreateMeleeWeapon(new ItemData("Knife", iconFolder + "knife.knife'", "", 2), new WeaponData(100, 60, 1, false, GearType.Secondary_Weapon), 300));
+		tablesRows.add(MeleeWeapon.CreateMeleeWeapon(new ItemData("Axe", iconFolder + "axe.axe'", "", 1), new WeaponData(100, 100, 2, false, GearType.Secondary_Weapon), 300));
 
-		float smgFireRate = (1.0f / 15.0f);
+		tablesRows.add(ProjectileWeapon.CreateProjectileWeapon(new ItemData("SMG", iconFolder + "smg.smg'", weaponsMeshFolder + "SMG.SMG'", 1), new WeaponData(1200, 11, 0.2f, false, GearType.Primary_Weapon), 1,
+				new ProjectileWeaponData("Projectile", 60, 2f)));
 
-		tablesRows.add(ProjectileWeapon.CreateProjectileWeapon(new ItemData("SMG", iconFolder + "smg.smg'", 1),
-				new WeaponData(1200, health / (3 / smgFireRate), smgFireRate, false, GearType.Primary_Weapon), 1, new ProjectileWeaponData("Projectile", 60, 2f)));
+		tablesRows.add(ProjectileWeapon.CreateProjectileWeapon(new ItemData("AK", iconFolder + "ak.ak'", weaponsMeshFolder + "AK.AK'", 1), new WeaponData(2000, 22, 0.25f, false, GearType.Primary_Weapon), 1,
+				new ProjectileWeaponData("Projectile", 30, 1f)));
 
-		float akFireRate = (1.0f / 4.0f);
-
-		tablesRows.add(ProjectileWeapon.CreateProjectileWeapon(new ItemData("AK", iconFolder + "ak.ak'", 1),
-				new WeaponData(2000, health / (3 / akFireRate), akFireRate, false, GearType.Primary_Weapon), 1, new ProjectileWeaponData("Projectile", 30, 1f)));
-
-		tablesRows.add(ProjectileWeapon.CreateProjectileWeapon(new ItemData("Pistol", iconFolder + "pistol.pistol'", 1), new WeaponData(1500, 25, 0.4f, false, GearType.Sidearm), 1,
+		tablesRows.add(ProjectileWeapon.CreateProjectileWeapon(new ItemData("Pistol", iconFolder + "pistol.pistol'", "", 1), new WeaponData(1500, 25, 0.4f, false, GearType.Sidearm), 1,
 				new ProjectileWeaponData("Projectile", 8, 0.8f)));
 
 		tablesRows.add(ContainerData.CreateContainerData(0, "Zero Base"));
@@ -61,19 +58,19 @@ public class SurvivalGameDataExporter {
 		tablesRows.add(ContainerData.CreateContainerData(8, "Character Inventory"));
 
 		// Armour
-		tablesRows.add(Armour.CreateArmour(new ItemData("Headpiece", iconFolder + "helmet.helmet'", 1), ArmourPosition.Head, 0));
-		tablesRows.add(Armour.CreateArmour(new ItemData("Chestpiece", iconFolder + "armor.armor'", 1), ArmourPosition.Chest, 2));
-		tablesRows.add(Armour.CreateArmour(new ItemData("Legs", iconFolder + "legs.legs'", 1), ArmourPosition.Legs, 1));
-		tablesRows.add(Armour.CreateArmour(new ItemData("Vest", iconFolder + "vest.vest'", 1), ArmourPosition.Vest, 1));
+		tablesRows.add(Armour.CreateArmour(new ItemData("Headpiece", iconFolder + "helmet.helmet'", "", 1), ArmourPosition.Head, 0));
+		tablesRows.add(Armour.CreateArmour(new ItemData("Chestpiece", iconFolder + "armor.armor'", "", 1), ArmourPosition.Chest, 2));
+		tablesRows.add(Armour.CreateArmour(new ItemData("Legs", iconFolder + "legs.legs'", "", 1), ArmourPosition.Legs, 1));
+		tablesRows.add(Armour.CreateArmour(new ItemData("Vest", iconFolder + "vest.vest'", "", 1), ArmourPosition.Vest, 1));
 
 		// Resources
-		tablesRows.add(Item.CreateItem(new ItemData("Wood", iconFolder + "wood.wood'", 20)));
-		tablesRows.add(Item.CreateItem(new ItemData("Nails", iconFolder + "nails.nails'", 20)));
+		tablesRows.add(Item.CreateItem(new ItemData("Wood", iconFolder + "wood.wood'", "", 20)));
+		tablesRows.add(Item.CreateItem(new ItemData("Nails", iconFolder + "nails.nails'", "", 20)));
 
 		// Consumables
-		tablesRows.add(Consumable.CreateConsumable(new ItemData("Bandage", iconFolder + "bandage.bandage'", 5), new ConsumableData(ConsumableType.Medical, 20)));
-		tablesRows.add(Consumable.CreateConsumable(new ItemData("Soda", iconFolder + "soda.soda'", 5), new ConsumableData(ConsumableType.Drink, 20)));
-		tablesRows.add(Consumable.CreateConsumable(new ItemData("Sandwich", iconFolder + "sandwich.sandwich'", 5), new ConsumableData(ConsumableType.Food, 20)));
+		tablesRows.add(Consumable.CreateConsumable(new ItemData("Bandage", iconFolder + "bandage.bandage'", "", 5), new ConsumableData(ConsumableType.Medical, 20)));
+		tablesRows.add(Consumable.CreateConsumable(new ItemData("Soda", iconFolder + "soda.soda'", "", 5), new ConsumableData(ConsumableType.Drink, 20)));
+		tablesRows.add(Consumable.CreateConsumable(new ItemData("Sandwich", iconFolder + "sandwich.sandwich'", "", 5), new ConsumableData(ConsumableType.Food, 20)));
 
 		// Loadouts
 		tablesRows.add(Loadout.CreateLoadout(new LoadoutData("Player", "Pistol", "", "Chestpiece", "", "Legs", health, 800, CharacterType.Player)));

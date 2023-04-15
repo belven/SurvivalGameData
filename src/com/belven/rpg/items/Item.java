@@ -36,6 +36,7 @@ public class Item extends RowData {
 		rowData.add(GetString(ID));
 		rowData.add(GetData().name);
 		rowData.add(GetData().type.toString());
+		rowData.add(GetData().icon);
 		rowData.add(GetData().mesh);
 		rowData.add(GetString(GetData().maxStatck));
 		return rowData.toArray(new String[0]);
