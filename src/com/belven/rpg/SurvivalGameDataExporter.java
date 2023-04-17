@@ -128,6 +128,7 @@ public class SurvivalGameDataExporter {
 		SaveRowData(Consumable.Consumables);
 		SaveRowData(Mission.Missions);
 		SaveRowData(MissionLoadout.MissionLoadouts);
+		SaveRowData(MissionItems.MissionItems);
 	}
 
 	static <T extends RowData> void SaveRowData(ArrayList<T> data) {
