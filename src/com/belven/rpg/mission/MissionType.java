@@ -4,5 +4,6 @@ public enum MissionType {
 	Medical,
 	Military,
 	Civilian,
-	Secret
+	Secret,
+	End
 }

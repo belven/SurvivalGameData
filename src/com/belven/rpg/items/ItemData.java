@@ -5,12 +5,22 @@ public class ItemData {
 	public String mesh;
 	public String icon;
 	public int maxStatck;
-	public ItemType type = ItemType.Resource;		
+	public ItemType type = ItemType.Resource;
+
+	static String iconFolder = "Texture2D'/Game/FirstPerson/Icons/";
+	static String weaponsMeshFolder = "StaticMesh'/Game/FirstPerson/Weapons/";
+
+	public ItemData(String inName, int inMaxStatck) {
+		name = inName;
+		mesh = weaponsMeshFolder + inName + "." + inName + "'";
+		icon = iconFolder + inName + "." + inName + "'";
+		maxStatck = inMaxStatck;
+	}
 
 	public ItemData(String inName, String inIcon, String inMesh, int inMaxStatck) {
 		name = inName;
 		mesh = inMesh;
-		icon= inIcon;
+		icon = inIcon;
 		maxStatck = inMaxStatck;
 	}
 }
