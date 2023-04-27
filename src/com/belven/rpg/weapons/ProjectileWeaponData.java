@@ -5,10 +5,12 @@ public class ProjectileWeaponData {
 	String projectile;
 	int magazineSize;
 	float reloadSpeed;
+	int bulletVelocity;
 	
-	public ProjectileWeaponData(String projectile, int magazineSize, float reloadSpeed) {
+	public ProjectileWeaponData(String projectile, int magazineSize, float reloadSpeed, int bulletVelocity) {
 		this.projectile = projectile;
 		this.magazineSize = magazineSize;
 		this.reloadSpeed = reloadSpeed;
+		this.bulletVelocity = bulletVelocity;
 	}
 }

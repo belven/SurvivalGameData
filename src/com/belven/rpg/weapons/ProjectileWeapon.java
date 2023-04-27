@@ -29,6 +29,7 @@ public class ProjectileWeapon extends RowData {
 		rowData.add(data.projectile);
 		rowData.add(GetString(data.magazineSize));
 		rowData.add(GetString(data.reloadSpeed));
+		rowData.add(GetString(data.bulletVelocity));
 		return rowData.toArray(new String[0]);
 	}
 

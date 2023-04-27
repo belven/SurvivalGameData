@@ -41,6 +41,4 @@ public class Item extends RowData {
 		rowData.add(GetString(GetData().maxStatck));
 		return rowData.toArray(new String[0]);
 	}
-
-
 }
