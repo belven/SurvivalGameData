@@ -26,11 +26,20 @@ public class ProjectileWeapon extends RowData {
 		ArrayList<String> rowData = new ArrayList<String>();
 		rowData.add(GetString(ID));
 		rowData.add(GetString(data.rangedWeaponID));
-		rowData.add(data.projectile);
+		rowData.add(GetString(GetItemByName(data.ammoType)));
 		rowData.add(GetString(data.magazineSize));
 		rowData.add(GetString(data.reloadSpeed));
 		rowData.add(GetString(data.bulletVelocity));
 		return rowData.toArray(new String[0]);
+	}
+	
+	public int GetItemByName(String name) {
+		for(Item i : Item.items) {		
+			if(i.GetData().name.equals(name))
+				return i.ID;
+		}
+		
+		return -1;
 	}
 
 	public static ProjectileWeapon CreateProjectileWeapon(ItemData itemData, WeaponData data, float accuracy, ProjectileWeaponData inProjectileData) {

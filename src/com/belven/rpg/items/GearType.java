@@ -4,8 +4,7 @@ public enum GearType {
 	Head,
 	Chest,
 	Legs,
-	Primary_Weapon,
-	Secondary_Weapon,
+	Weapon,
 	Sidearm,
 	Bag,
 	Vest

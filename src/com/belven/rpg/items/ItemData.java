@@ -23,4 +23,12 @@ public class ItemData {
 		icon = inIcon;
 		maxStatck = inMaxStatck;
 	}
+	
+	public ItemData(String inName, String inIcon, String inMesh, int inMaxStatck, ItemType inType) {
+		name = inName;
+		mesh = inMesh;
+		icon = inIcon;
+		maxStatck = inMaxStatck;
+		type = inType;
+	}
 }
