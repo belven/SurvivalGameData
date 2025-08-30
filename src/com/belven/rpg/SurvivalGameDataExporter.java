@@ -35,7 +35,7 @@ import com.opencsv.CSVWriter;
 
 public class SurvivalGameDataExporter {
 	static ArrayList<RowData> tablesRows = new ArrayList<>();
-	static String tablesFolder = "D:\\Unreal Projects\\SurvivalTest\\Source\\Tables";
+	static String tablesFolder = "E:\\Unreal Projects\\SurvivalTest\\Source\\Tables";
 	static String iconFolder = "Texture2D'/Game/FirstPerson/Icons/";
 	static String weaponsMeshFolder = "StaticMesh'/Game/FirstPerson/Weapons/";
 	static String containerMeshFolder = "StaticMesh'/Game/FirstPerson/LootBoxes/";
@@ -44,9 +44,9 @@ public class SurvivalGameDataExporter {
 		int health = 100;
 
 		// Weapons
-		tablesRows.add(ProjectileWeapon.CreateProjectileWeapon(new ItemData("Test Weapon", 1), new WeaponData(15000, 11, 0.1f, false, GearType.Weapon), 0.9975f,
-				new ProjectileWeaponData("Test Ammo", 10, 0.2f, 15000)));
-		tablesRows.add(Item.CreateItem(new ItemData("Test Ammo", iconFolder + "539.539'", "", 20, ItemType.Ammo)));
+		tablesRows.add(ProjectileWeapon.CreateProjectileWeapon(new ItemData("Test Weapon", 1), new WeaponData(15000, 11, 0.01f, false, GearType.Weapon), 0.9995f,
+				new ProjectileWeaponData("Test Ammo", 30, 0.2f, 15000)));
+		tablesRows.add(Item.CreateItem(new ItemData("Test Ammo", iconFolder + "539.539'", "", 30, ItemType.Ammo)));
 		tablesRows.add(Loadout.CreateLoadout(new LoadoutData("Test AI", "Test Weapon", "", "Chestpiece", "", "Legs", health, 800, CharacterType.Enemy)));
 
 		tablesRows.add(MeleeWeapon.CreateMeleeWeapon(new ItemData("Knife", 1), new WeaponData(400, 60, 1, false, GearType.Weapon), 300));
@@ -56,7 +56,7 @@ public class SurvivalGameDataExporter {
 				ProjectileWeapon.CreateProjectileWeapon(new ItemData("SMG", 1), new WeaponData(15000, 11, 0.2f, false, GearType.Weapon), 0.9975f, new ProjectileWeaponData("5.39", 60, 2f, 15000)));
 
 		tablesRows.add(
-				ProjectileWeapon.CreateProjectileWeapon(new ItemData("AK", 1), new WeaponData(18000, 22, 0.25f, false, GearType.Weapon), 0.9985f, new ProjectileWeaponData("7.62", 30, 1f, 18000)));
+				ProjectileWeapon.CreateProjectileWeapon(new ItemData("MP5", 1), new WeaponData(18000, 22, 0.25f, false, GearType.Weapon), 0.9985f, new ProjectileWeaponData("7.62", 30, 1f, 18000)));
 
 		tablesRows.add(
 				ProjectileWeapon.CreateProjectileWeapon(new ItemData("Pistol", 1), new WeaponData(15000, 25, 0.4f, false, GearType.Sidearm), 0.998f, new ProjectileWeaponData("5.39", 8, 0.8f, 13000)));
@@ -70,7 +70,8 @@ public class SurvivalGameDataExporter {
 		tablesRows.add(ContainerData.CreateContainerData(15, "Character Inventory", "", MissionType.End));
 		tablesRows.add(ContainerData.CreateContainerData(20, "Wooden Crate", containerMeshFolder + "Crate.Crate'", MissionType.Civilian));
 		tablesRows.add(ContainerData.CreateContainerData(5, "Medical Case", containerMeshFolder + "Medical_Case.Medical_Case'", MissionType.Medical));
-		tablesRows.add(ContainerData.CreateContainerData(10, "Medical Supplies", containerMeshFolder + "Medical_Supplies.Medical_Supplies'", MissionType.Medical));
+		tablesRows.add(ContainerData.CreateContainerData(15, "Medical Supplies", containerMeshFolder + "Medical_Supplies.Medical_Supplies'", MissionType.Medical));
+		tablesRows.add(ContainerData.CreateContainerData(15, "Military Crate", containerMeshFolder + "Military_Crate.Military_Crate'", MissionType.Military));
 
 		// Armour
 		tablesRows.add(Armour.CreateArmour(new ItemData("Headpiece", iconFolder + "helmet.helmet'", "", 1), ArmourPosition.Head, 0));
@@ -99,23 +100,23 @@ public class SurvivalGameDataExporter {
 		tablesRows.add(Consumable.CreateConsumable(new ItemData("Sandwich", iconFolder + "sandwich.sandwich'", "", 5), new ConsumableData(ConsumableType.Food, 20)));
 
 		// Loadouts
-		tablesRows.add(Loadout.CreateLoadout(new LoadoutData("Player", "AK", "", "Chestpiece", "", "Legs", health * 1000, 800, CharacterType.Player)));
+		tablesRows.add(Loadout.CreateLoadout(new LoadoutData("Player", "MP5", "", "Chestpiece", "", "Legs", health * 100, 800, CharacterType.Player)));
 		tablesRows.add(Loadout.CreateLoadout(new LoadoutData("AI Base", "SMG", "Headpiece", "Chestpiece", "", "Legs", health, 800, CharacterType.Enemy)));
 
 		// Medical Loadouts
 		tablesRows.add(Loadout.CreateLoadout(new LoadoutData("Medical Staff", "Pistol", "", "Chestpiece", "", "Legs", health, 800, CharacterType.Enemy)));
-		tablesRows.add(Loadout.CreateLoadout(new LoadoutData("Medical Guards", "AK", "", "Military Chestpiece", "Military Vest", "Military Legs", health, 800, CharacterType.Enemy)));
+		tablesRows.add(Loadout.CreateLoadout(new LoadoutData("Medical Guards", "MP5", "", "Military Chestpiece", "Military Vest", "Military Legs", health, 800, CharacterType.Enemy)));
 		tablesRows.add(Loadout.CreateLoadout(new LoadoutData("Medical Guards B", "SMG", "", "Chestpiece", "Vest", "Military Legs", health, 800, CharacterType.Enemy)));
 		tablesRows.add(Loadout.CreateLoadout(new LoadoutData("Sniper Guard", "Sniper", "Military Headpiece", "Chestpiece", "Vest", "Military Legs", health, 800, CharacterType.Enemy)));
 		tablesRows.add(Loadout.CreateLoadout(new LoadoutData("Doctor", "Knife", "", "", "", "Legs", health, 800, CharacterType.Enemy)));
 
 		tablesRows.add(Loadout.CreateLoadout(new LoadoutData("Civillian", "Pistol", "", "Chestpiece", "", "Legs", health, 800, CharacterType.Enemy)));
-		tablesRows.add(Loadout.CreateLoadout(new LoadoutData("Civillian Guard A", "AK", "", "Chestpiece", "", "Legs", health, 800, CharacterType.Enemy)));
+		tablesRows.add(Loadout.CreateLoadout(new LoadoutData("Civillian Guard A", "MP5", "", "Chestpiece", "", "Legs", health, 800, CharacterType.Enemy)));
 		tablesRows.add(Loadout.CreateLoadout(new LoadoutData("Civillian Guard B", "SMG", "", "Chestpiece", "Vest", "Military Legs", health, 800, CharacterType.Enemy)));
 
 		tablesRows.add(Loadout.CreateLoadout(new LoadoutData("Military Sniper", "Sniper", "Military Headpiece", "Chestpiece", "", "Legs", health, 800, CharacterType.Enemy)));
-		tablesRows
-				.add(Loadout.CreateLoadout(new LoadoutData("Military Assault", "AK", "Military Headpiece", "Military Chestpiece", "Military Vest", "Military Legs", health, 800, CharacterType.Enemy)));
+		tablesRows.add(
+				Loadout.CreateLoadout(new LoadoutData("Military Assault", "MP5", "Military Headpiece", "Military Chestpiece", "Military Vest", "Military Legs", health, 800, CharacterType.Enemy)));
 		tablesRows.add(
 				Loadout.CreateLoadout(new LoadoutData("Military Support", "SMG", "Military Headpiece", "Military Chestpiece", "Military Vest", "Military Legs", health, 800, CharacterType.Enemy)));
 
@@ -129,7 +130,7 @@ public class SurvivalGameDataExporter {
 		tablesRows.add(MissionLoadout.CreateMissonLoadout(new MissionLoadoutData(MissionType.Medical, "Test AI")));
 		tablesRows.add(MissionLoadout.CreateMissonLoadout(new MissionLoadoutData(MissionType.Medical, "Test AI")));
 		tablesRows.add(MissionLoadout.CreateMissonLoadout(new MissionLoadoutData(MissionType.Medical, "Test AI")));
-		
+
 //		tablesRows.add(MissionLoadout.CreateMissonLoadout(new MissionLoadoutData(MissionType.Medical, "Doctor")));
 //		tablesRows.add(MissionLoadout.CreateMissonLoadout(new MissionLoadoutData(MissionType.Medical, "Doctor")));
 //		tablesRows.add(MissionLoadout.CreateMissonLoadout(new MissionLoadoutData(MissionType.Medical, "Medical Staff")));
@@ -141,7 +142,7 @@ public class SurvivalGameDataExporter {
 		tablesRows.add(MissionLoadout.CreateMissonLoadout(new MissionLoadoutData(MissionType.Civilian, "Test AI")));
 		tablesRows.add(MissionLoadout.CreateMissonLoadout(new MissionLoadoutData(MissionType.Civilian, "Test AI")));
 		tablesRows.add(MissionLoadout.CreateMissonLoadout(new MissionLoadoutData(MissionType.Civilian, "Test AI")));
-		
+
 //		tablesRows.add(MissionLoadout.CreateMissonLoadout(new MissionLoadoutData(MissionType.Civilian, "Civillian")));
 //		tablesRows.add(MissionLoadout.CreateMissonLoadout(new MissionLoadoutData(MissionType.Civilian, "Civillian Guard A")));
 //		tablesRows.add(MissionLoadout.CreateMissonLoadout(new MissionLoadoutData(MissionType.Civilian, "Civillian Guard B")));
@@ -168,7 +169,7 @@ public class SurvivalGameDataExporter {
 
 		tablesRows.add(MissionItems.CreateMissonItem(new MissionItemData(MissionType.Military, "Pistol")));
 		tablesRows.add(MissionItems.CreateMissonItem(new MissionItemData(MissionType.Military, "Sniper")));
-		tablesRows.add(MissionItems.CreateMissonItem(new MissionItemData(MissionType.Military, "AK")));
+		tablesRows.add(MissionItems.CreateMissonItem(new MissionItemData(MissionType.Military, "MP5")));
 		tablesRows.add(MissionItems.CreateMissonItem(new MissionItemData(MissionType.Military, "SMG")));
 
 		tablesRows.add(MissionItems.CreateMissonItem(new MissionItemData(MissionType.Military, "5.39")));

@@ -12,6 +12,7 @@ public class ItemData {
 
 	public ItemData(String inName, int inMaxStatck) {
 		name = inName;
+		inName = inName.replace(" ", "_");
 		mesh = weaponsMeshFolder + inName + "." + inName + "'";
 		icon = iconFolder + inName + "." + inName + "'";
 		maxStatck = inMaxStatck;
@@ -23,7 +24,7 @@ public class ItemData {
 		icon = inIcon;
 		maxStatck = inMaxStatck;
 	}
-	
+
 	public ItemData(String inName, String inIcon, String inMesh, int inMaxStatck, ItemType inType) {
 		name = inName;
 		mesh = inMesh;
