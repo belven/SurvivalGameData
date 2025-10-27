@@ -27,18 +27,9 @@ public class MissionItems extends RowData {
 	public String[] CreateData() {
 		ArrayList<String> rowData = new ArrayList<String>();
 		rowData.add(GetString(ID));
-		rowData.add(GetString(GetItemByName(data.itemName)));
+		rowData.add(GetString(Item.GetItemByName(data.itemName)));
 		rowData.add(data.type.toString());
 		return rowData.toArray(new String[0]);
-	}
-
-	public int GetItemByName(String name) {
-		for (Item i : Item.items) {
-			if (i.GetData().name.equals(name))
-				return i.ID;
-		}
-
-		return -1;
 	}
 
 	@Override

@@ -30,6 +30,15 @@ public class Item extends RowData {
 		return new Item(data);
 	}
 
+	public static int GetItemByName(String name) {
+		for (Item i : Item.items) {
+			if (i.GetData().name.equals(name))
+				return i.ID;
+		}
+
+		return -1;
+	}
+
 	@Override
 	public String[] CreateData() {
 		ArrayList<String> rowData = new ArrayList<String>();
