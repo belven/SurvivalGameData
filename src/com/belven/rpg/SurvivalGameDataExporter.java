@@ -13,9 +13,15 @@ import com.belven.rpg.items.ConsumableType;
 import com.belven.rpg.items.ContainerData;
 import com.belven.rpg.items.ContainerItem;
 import com.belven.rpg.items.GearType;
+import com.belven.rpg.items.InputOrOutput;
+import com.belven.rpg.items.InputOutputData;
+import com.belven.rpg.items.InputOutputType;
 import com.belven.rpg.items.Item;
 import com.belven.rpg.items.ItemData;
 import com.belven.rpg.items.ItemType;
+import com.belven.rpg.items.Recipe;
+import com.belven.rpg.items.RecipeInputOutputData;
+import com.belven.rpg.items.RecipeType;
 import com.belven.rpg.items.RowData;
 import com.belven.rpg.mission.Loadout;
 import com.belven.rpg.mission.LoadoutData;
@@ -83,8 +89,12 @@ public class SurvivalGameDataExporter {
 		tablesRows.add(Armour.CreateArmour(new ItemData("Military Vest", iconFolder + "vest.vest'", "", 1), ArmourPosition.Vest, 1, 10));
 
 		// Resources
-		tablesRows.add(Item.CreateItem(new ItemData("Wood", iconFolder + "wood.wood'", "", 20)));
-		tablesRows.add(Item.CreateItem(new ItemData("Nails", iconFolder + "nails.nails'", "", 20)));
+		tablesRows.add(Item.CreateItem(new ItemData("Wood", iconFolder + "wood.wood'", "", 10)));
+		tablesRows.add(Item.CreateItem(new ItemData("Nails", iconFolder + "nails.nails'", "", 100)));
+		tablesRows.add(Item.CreateItem(new ItemData("Cloth", iconFolder + "Cloth.Cloth'", "", 20)));
+		tablesRows.add(Item.CreateItem(new ItemData("Barricade", iconFolder + "Barricade.Barricade'", "", 1)));
+		tablesRows.add(Item.CreateItem(new ItemData("Metal", iconFolder + "Metal.Metal'", "", 10)));
+		tablesRows.add(Item.CreateItem(new ItemData("Gunpowder", iconFolder + "Gunpowder.Gunpowder'", "", 100)));
 
 		// Ammo
 		tablesRows.add(Item.CreateItem(new ItemData("7.62", iconFolder + "762.762'", "", 100, ItemType.Ammo)));
@@ -95,9 +105,12 @@ public class SurvivalGameDataExporter {
 		tablesRows.add(Consumable.CreateConsumable(new ItemData("First Aid Kit", iconFolder + "FirstAidKit.FirstAidKit'", "", 5), new ConsumableData(ConsumableType.Medical, 50)));
 		tablesRows.add(Consumable.CreateConsumable(new ItemData("Soda", iconFolder + "soda.soda'", "", 100), new ConsumableData(ConsumableType.Drink, 20)));
 		tablesRows.add(Consumable.CreateConsumable(new ItemData("Sandwich", iconFolder + "sandwich.sandwich'", "", 5), new ConsumableData(ConsumableType.Food, 20)));
+		tablesRows.add(Consumable.CreateConsumable(new ItemData("Bread", iconFolder + "Bread.Bread'", "", 1), new ConsumableData(ConsumableType.Food, 60)));
+		tablesRows.add(Consumable.CreateConsumable(new ItemData("Raw Meat", iconFolder + "Raw_Meat.Raw_Meat'", "", 5), new ConsumableData(ConsumableType.Food, -10)));
+		tablesRows.add(Consumable.CreateConsumable(new ItemData("Raw Veg", iconFolder + "Raw_Veg.Raw_Veg'", "", 5), new ConsumableData(ConsumableType.Food, 10)));
 
 		// Loadouts
-		tablesRows.add(Loadout.CreateLoadout(new LoadoutData("Player", "MP5", "", "Chestpiece", "", "Legs", health * 100, 800, CharacterType.Player)));
+		tablesRows.add(Loadout.CreateLoadout(new LoadoutData("Player", "MP5", "", "Chestpiece", "", "Legs", health * 100, 1600, CharacterType.Player)));
 		tablesRows.add(Loadout.CreateLoadout(new LoadoutData("AI Base", "SMG", "Headpiece", "Chestpiece", "", "Legs", health, 800, CharacterType.Enemy)));
 
 		// Medical Loadouts
@@ -117,19 +130,33 @@ public class SurvivalGameDataExporter {
 		tablesRows.add(
 				Loadout.CreateLoadout(new LoadoutData("Military Support", "SMG", "Military Headpiece", "Military Chestpiece", "Military Vest", "Military Legs", health, 800, CharacterType.Enemy)));
 
-		String WoodenCrate = "Wooden Crate";
+		tablesRows.add(Recipe.CreateRecipe("Barricade", RecipeType.Manual, -1, InputOutputData.CreateInputOutputData("Wood", 1, InputOutputType.Item, InputOrOutput.Input),
+				InputOutputData.CreateInputOutputData("Nails", 1, InputOutputType.Item, InputOrOutput.Input),
+				InputOutputData.CreateInputOutputData("Metal", 1, InputOutputType.Item, InputOrOutput.Input),
+				InputOutputData.CreateInputOutputData("Barricade", 1, InputOutputType.Item, InputOrOutput.Output)));
+
+		tablesRows.add(Recipe.CreateRecipe("Barricade", RecipeType.Manual, -1, InputOutputData.CreateInputOutputData("Metal", 1, InputOutputType.Item, InputOrOutput.Input),
+				InputOutputData.CreateInputOutputData("Sniper", 1, InputOutputType.Item, InputOrOutput.Output)));
+		tablesRows.add(Recipe.CreateRecipe("Barricade", RecipeType.Manual, -1, InputOutputData.CreateInputOutputData("Metal", 1, InputOutputType.Item, InputOrOutput.Input),
+				InputOutputData.CreateInputOutputData("SMG", 1, InputOutputType.Item, InputOrOutput.Output)));
+		tablesRows.add(Recipe.CreateRecipe("Barricade", RecipeType.Manual, -1, InputOutputData.CreateInputOutputData("Metal", 1, InputOutputType.Item, InputOrOutput.Input),
+				InputOutputData.CreateInputOutputData("M	P5", 1, InputOutputType.Item, InputOrOutput.Output)));
+
+		String SuppliesCrate = "Supplies Crate";
 		String medicalCase = "Medical Case";
 		String medicalSupplies = "Medical Supplies";
 		String militaryCrate = "Military Crate";
 		String secretCrate = "Secret Crate";
+		String lunchBox = "Lunch Box";
 
-		tablesRows.add(ContainerData.CreateContainerData(20, WoodenCrate, containerMeshFolder + "Crate.Crate'"));
+		tablesRows.add(ContainerData.CreateContainerData(20, SuppliesCrate, containerMeshFolder + "Crate.Crate'"));
 		tablesRows.add(ContainerData.CreateContainerData(5, medicalCase, containerMeshFolder + "Medical_Case.Medical_Case'"));
 		tablesRows.add(ContainerData.CreateContainerData(15, medicalSupplies, containerMeshFolder + "Medical_Supplies.Medical_Supplies'"));
 		tablesRows.add(ContainerData.CreateContainerData(15, militaryCrate, containerMeshFolder + "Military_Crate.Military_Crate'"));
+		tablesRows.add(ContainerData.CreateContainerData(10, lunchBox, containerMeshFolder + "Lunchbox.Lunchbox'"));
 
 		// TODO make new model or secret crate
-		tablesRows.add(ContainerData.CreateContainerData(15, secretCrate, containerMeshFolder + "Military_Crate.Military_Crate'"));
+		tablesRows.add(ContainerData.CreateContainerData(15, secretCrate, containerMeshFolder + "Secret_Crate.Secret_Crate'"));
 
 		tablesRows.add(new ContainerItem(medicalCase, "Bandage"));
 		tablesRows.add(new ContainerItem(medicalCase, "First Aid Kit"));
@@ -145,10 +172,18 @@ public class SurvivalGameDataExporter {
 		tablesRows.add(new ContainerItem(medicalSupplies, "Sandwich"));
 		tablesRows.add(new ContainerItem(medicalSupplies, "5.39"));
 
-		tablesRows.add(new ContainerItem(WoodenCrate, "Wood"));
-		tablesRows.add(new ContainerItem(WoodenCrate, "Nails"));
-		tablesRows.add(new ContainerItem(WoodenCrate, "Soda"));
-		tablesRows.add(new ContainerItem(WoodenCrate, "Sandwich"));
+		tablesRows.add(new ContainerItem(SuppliesCrate, "Wood"));
+		tablesRows.add(new ContainerItem(SuppliesCrate, "Nails"));
+		tablesRows.add(new ContainerItem(SuppliesCrate, "Cloth"));
+		tablesRows.add(new ContainerItem(SuppliesCrate, "Barricade"));
+		tablesRows.add(new ContainerItem(SuppliesCrate, "Metal"));
+		tablesRows.add(new ContainerItem(SuppliesCrate, "Gunpowder"));
+
+		tablesRows.add(new ContainerItem(lunchBox, "Soda"));
+		tablesRows.add(new ContainerItem(lunchBox, "Sandwich"));
+		tablesRows.add(new ContainerItem(lunchBox, "Bread"));
+		tablesRows.add(new ContainerItem(lunchBox, "Raw Meat"));
+		tablesRows.add(new ContainerItem(lunchBox, "Raw Veg"));
 
 		tablesRows.add(new ContainerItem(militaryCrate, "Pistol"));
 		tablesRows.add(new ContainerItem(militaryCrate, "Sniper"));
@@ -179,18 +214,11 @@ public class SurvivalGameDataExporter {
 		tablesRows.add(Mission.CreateMission(new MissionData(MissionType.Military)));
 		tablesRows.add(Mission.CreateMission(new MissionData(MissionType.Secret)));
 
-		tablesRows.add(new MissionContainer(MissionType.Medical, medicalSupplies));
-		tablesRows.add(new MissionContainer(MissionType.Medical, medicalCase));
-
-		tablesRows.add(new MissionContainer(MissionType.Civilian, WoodenCrate));
-
-		tablesRows.add(new MissionContainer(MissionType.Military, medicalSupplies));
-		tablesRows.add(new MissionContainer(MissionType.Military, militaryCrate));
-
-		tablesRows.add(new MissionContainer(MissionType.Secret, medicalSupplies));
-		tablesRows.add(new MissionContainer(MissionType.Secret, militaryCrate));
-
 		MissionType type = MissionType.Medical;
+
+		tablesRows.add(new MissionContainer(type, medicalSupplies));
+		tablesRows.add(new MissionContainer(type, medicalCase));
+		tablesRows.add(new MissionContainer(type, lunchBox));
 
 		// Mission Loadouts
 //		tablesRows.add(MissionLoadout.CreateMissonLoadout(new MissionLoadoutData(MissionType.Medical, "Test AI")));
@@ -211,11 +239,17 @@ public class SurvivalGameDataExporter {
 //		tablesRows.add(MissionLoadout.CreateMissonLoadout(new MissionLoadoutData(MissionType.Civilian, "Test AI")));
 
 		type = MissionType.Civilian;
+		tablesRows.add(new MissionContainer(type, SuppliesCrate));
+		tablesRows.add(new MissionContainer(type, lunchBox));
+
 		tablesRows.add(MissionLoadout.CreateMissonLoadout(new MissionLoadoutData(type, "Civillian")));
 		tablesRows.add(MissionLoadout.CreateMissonLoadout(new MissionLoadoutData(type, "Civillian Guard A")));
 		tablesRows.add(MissionLoadout.CreateMissonLoadout(new MissionLoadoutData(type, "Civillian Guard B")));
 
 		type = MissionType.Military;
+		tablesRows.add(new MissionContainer(type, medicalSupplies));
+		tablesRows.add(new MissionContainer(type, militaryCrate));
+
 //		tablesRows.add(MissionLoadout.CreateMissonLoadout(new MissionLoadoutData(MissionType.Military, "Test AI")));
 //		tablesRows.add(MissionLoadout.CreateMissonLoadout(new MissionLoadoutData(MissionType.Military, "Test AI")));
 //		tablesRows.add(MissionLoadout.CreateMissonLoadout(new MissionLoadoutData(MissionType.Military, "Test AI")));
@@ -227,6 +261,9 @@ public class SurvivalGameDataExporter {
 		tablesRows.add(MissionLoadout.CreateMissonLoadout(new MissionLoadoutData(type, "Military Support")));
 
 		type = MissionType.Secret;
+		tablesRows.add(new MissionContainer(type, secretCrate));
+		tablesRows.add(new MissionContainer(type, lunchBox));
+
 		tablesRows.add(MissionLoadout.CreateMissonLoadout(new MissionLoadoutData(type, "Doctor")));
 		tablesRows.add(MissionLoadout.CreateMissonLoadout(new MissionLoadoutData(type, "Medical Staff")));
 		tablesRows.add(MissionLoadout.CreateMissonLoadout(new MissionLoadoutData(type, "Medical Staff")));
@@ -264,6 +301,9 @@ public class SurvivalGameDataExporter {
 		SaveRowData(MissionItems.MissionItems);
 		SaveRowData(MissionContainer.MissionContainers);
 		SaveRowData(ContainerItem.ContainerItems);
+		SaveRowData(Recipe.recipes);
+		SaveRowData(InputOutputData.inputOutputs);
+		SaveRowData(RecipeInputOutputData.RecipeInputOutputData);
 	}
 
 	static <T extends RowData> void SaveRowData(ArrayList<T> data) {

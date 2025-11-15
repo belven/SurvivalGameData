@@ -36,6 +36,7 @@ public class Item extends RowData {
 				return i.ID;
 		}
 
+		System.out.println("Item not found " + name);
 		return -1;
 	}
 

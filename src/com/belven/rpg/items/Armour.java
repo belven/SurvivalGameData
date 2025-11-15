@@ -19,18 +19,19 @@ public class Armour extends RowData {
 
 		armour.add(this);
 	}
-	
-	public static Armour CreateArmour(ItemData itemData,  ArmourPosition armourPosition, int containerID) {		
+
+	public static Armour CreateArmour(ItemData itemData, ArmourPosition armourPosition, int containerID) {
 		return CreateArmour(itemData, armourPosition, containerID, 0);
 	}
 
-	public static Armour CreateArmour(ItemData itemData,  ArmourPosition armourPosition, int containerID, int resistance) {
+	public static Armour CreateArmour(ItemData itemData, ArmourPosition armourPosition, int containerID, int resistance) {
 		itemData.type = ItemType.Armour;
 		Item i = Item.CreateItem(itemData);
+
 		Armour a = new Armour();
 		a.itemID = i.ID;
 		a.armourPosition = armourPosition;
-		a.resistance = resistance;		
+		a.resistance = resistance;
 		a.containerID = containerID;
 		return a;
 	}
