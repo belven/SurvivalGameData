@@ -130,17 +130,27 @@ public class SurvivalGameDataExporter {
 		tablesRows.add(
 				Loadout.CreateLoadout(new LoadoutData("Military Support", "SMG", "Military Headpiece", "Military Chestpiece", "Military Vest", "Military Legs", health, 800, CharacterType.Enemy)));
 
-		tablesRows.add(Recipe.CreateRecipe("Barricade", RecipeType.Manual, -1, InputOutputData.CreateInputOutputData("Wood", 1, InputOutputType.Item, InputOrOutput.Input),
-				InputOutputData.CreateInputOutputData("Nails", 1, InputOutputType.Item, InputOrOutput.Input),
-				InputOutputData.CreateInputOutputData("Metal", 1, InputOutputType.Item, InputOrOutput.Input),
-				InputOutputData.CreateInputOutputData("Barricade", 1, InputOutputType.Item, InputOrOutput.Output)));
+		tablesRows.add(Recipe.CreateRecipe("Barricade", RecipeType.Manual, -1, InputOutputData.CreateInputOutputData("Wood", 15, InputOutputType.Item, InputOrOutput.Input),
+				InputOutputData.CreateInputOutputData("Pistol", 1, InputOutputType.Item, InputOrOutput.Input),
+				InputOutputData.CreateInputOutputData("Metal", 15, InputOutputType.Item, InputOrOutput.Input),
+				InputOutputData.CreateInputOutputData("Military Chestpiece", 1, InputOutputType.Item, InputOrOutput.Output),
+				InputOutputData.CreateInputOutputData("Sniper", 1, InputOutputType.Item, InputOrOutput.Output),
+				InputOutputData.CreateInputOutputData("SMG", 1, InputOutputType.Item, InputOrOutput.Output),
+				InputOutputData.CreateInputOutputData("SMG", 1, InputOutputType.Item, InputOrOutput.Output),
+				InputOutputData.CreateInputOutputData("SMG", 1, InputOutputType.Item, InputOrOutput.Output),
+				InputOutputData.CreateInputOutputData("SMG", 1, InputOutputType.Item, InputOrOutput.Output),
+				InputOutputData.CreateInputOutputData("SMG", 1, InputOutputType.Item, InputOrOutput.Output),
+				InputOutputData.CreateInputOutputData("SMG", 1, InputOutputType.Item, InputOrOutput.Output),
+				InputOutputData.CreateInputOutputData("SMG", 1, InputOutputType.Item, InputOrOutput.Output),
+				InputOutputData.CreateInputOutputData("SMG", 1, InputOutputType.Item, InputOrOutput.Output),
+				InputOutputData.CreateInputOutputData("SMG", 1, InputOutputType.Item, InputOrOutput.Output)));
 
 		tablesRows.add(Recipe.CreateRecipe("Barricade", RecipeType.Manual, -1, InputOutputData.CreateInputOutputData("Metal", 1, InputOutputType.Item, InputOrOutput.Input),
 				InputOutputData.CreateInputOutputData("Sniper", 1, InputOutputType.Item, InputOrOutput.Output)));
 		tablesRows.add(Recipe.CreateRecipe("Barricade", RecipeType.Manual, -1, InputOutputData.CreateInputOutputData("Metal", 1, InputOutputType.Item, InputOrOutput.Input),
 				InputOutputData.CreateInputOutputData("SMG", 1, InputOutputType.Item, InputOrOutput.Output)));
 		tablesRows.add(Recipe.CreateRecipe("Barricade", RecipeType.Manual, -1, InputOutputData.CreateInputOutputData("Metal", 1, InputOutputType.Item, InputOrOutput.Input),
-				InputOutputData.CreateInputOutputData("M	P5", 1, InputOutputType.Item, InputOrOutput.Output)));
+				InputOutputData.CreateInputOutputData("MP5", 1, InputOutputType.Item, InputOrOutput.Output)));
 
 		String SuppliesCrate = "Supplies Crate";
 		String medicalCase = "Medical Case";
@@ -272,6 +282,18 @@ public class SurvivalGameDataExporter {
 		tablesRows.add(MissionLoadout.CreateMissonLoadout(new MissionLoadoutData(type, "Military Sniper")));
 		tablesRows.add(MissionLoadout.CreateMissonLoadout(new MissionLoadoutData(type, "Military Support")));
 		tablesRows.add(MissionLoadout.CreateMissonLoadout(new MissionLoadoutData(type, "Military Support")));
+
+		TableDefinition td = new TableDefinition("InputOutputData", "Recipe", new TableColumn("ID", ValueType.Integer), new TableColumn("inputOutputID", ValueType.Integer),
+				new TableColumn("amount", ValueType.Integer), new TableColumn("type", ValueType.Enumeration, InputOutputType.class.getSimpleName()),
+				new TableColumn("inputOrOutput", ValueType.Enumeration, InputOrOutput.class.getSimpleName()));
+		System.out.println();
+		System.out.println(td.GetCPPStruct());
+		System.out.println();
+		System.out.println(td.GetCPPTableHeader());
+		System.out.println();
+		System.out.println(td.GetCPPTableClass());
+		System.out.println();
+
 	}
 
 	public static void SaveData(ArrayList<String[]> data, String filePath) {
@@ -311,13 +333,23 @@ public class SurvivalGameDataExporter {
 		if (!data.isEmpty()) {
 			ArrayList<String[]> dataStrings = new ArrayList<String[]>();
 
+			T firstItem = data.get(0);
+			String tableName = firstItem.tableName;
+
+			if (firstItem.tableDef != null) {
+				System.out.println(firstItem.tableDef.toString());
+			} else {
+				System.out.println("Table" + tableName + " is missing table def ");
+			}
+
 			for (T d : data) {
 				dataStrings.add(CreateData(d));
 			}
-			SaveData(dataStrings, tablesFolder + data.get(0).tableName);
+			SaveData(dataStrings, tablesFolder + tableName);
 		} else {
 			System.out.println("Table is empty");
 		}
+
 	}
 
 	private static String[] CreateData(RowData row) {
