@@ -33,6 +33,8 @@ public class TableColumn {
 			return "int32";
 		case String:
 			return "FString";
+		case Vector:
+			return "FVector";
 		default:
 			break;
 

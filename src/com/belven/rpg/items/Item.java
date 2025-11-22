@@ -2,10 +2,18 @@ package com.belven.rpg.items;
 
 import java.util.ArrayList;
 
+import com.belven.rpg.TableColumn;
+import com.belven.rpg.TableDefinition;
+import com.belven.rpg.ValueType;
+
 public class Item extends RowData {
 	public static String Item_Table = "\\ItemData.csv";
 	public static ArrayList<Item> items = new ArrayList<Item>();
 	private ItemData data;
+
+	public static TableDefinition Table_Definition = new TableDefinition("Item", "Item", new TableColumn("ID", ValueType.Integer), new TableColumn("Name", ValueType.String),
+			new TableColumn("Mesh", ValueType.String), new TableColumn("Icon", ValueType.String), new TableColumn("MaxStackSize", ValueType.Integer),
+			new TableColumn("Type", ValueType.Enumeration, ItemType.class.getSimpleName()));
 
 	public ItemData GetData() {
 		return data;

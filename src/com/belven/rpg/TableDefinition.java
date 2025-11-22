@@ -13,6 +13,26 @@ public class TableDefinition {
 		this.columns = columns;
 	}
 
+	@Override
+	public String toString() {
+		StringBuilder value = new StringBuilder();
+		value.append("------ " + name + " ------");
+		value.append(newLine);
+		value.append("------ Struct ------");
+		value.append(newLine + newLine);
+		value.append(GetCPPStruct());
+		value.append(newLine + newLine);
+		value.append("------ Header ------");
+		value.append(newLine + newLine);
+		value.append(GetCPPTableHeader());
+		value.append(newLine + newLine);
+		value.append("------ Class ------");
+		value.append(newLine + newLine);
+		value.append(GetCPPTableClass());
+		value.append(newLine + newLine);
+		return value.toString();
+	}
+
 	public String GetCPPTableClass() {
 		StringBuilder value = new StringBuilder();
 		String structName = "F" + name;
@@ -55,6 +75,9 @@ public class TableDefinition {
 				break;
 			case String:
 				value.append("*" + indexPP + ";");
+				break;
+			case Vector:
+				value.append("GetVectorFromString(" + indexPP + ");");
 				break;
 			default:
 				break;

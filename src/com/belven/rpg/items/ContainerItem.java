@@ -15,9 +15,7 @@ public class ContainerItem extends RowData {
 		this.containerName = containerName;
 		this.itemName = itemName;
 
-		if (ContainerItems.size() > 0) {
-			ID = GetLastID() + 1;
-		}
+		IncrementID(ContainerItems);
 
 		ContainerItems.add(this);
 	}
@@ -28,14 +26,12 @@ public class ContainerItem extends RowData {
 		rowData.add(GetString(ID));
 		rowData.add(GetString(ContainerData.GetContainerByName(containerName)));
 		rowData.add(GetString(Item.GetItemByName(itemName)));
-		// rowData.add(containerName);
-		// rowData.add(itemName);
 		return rowData.toArray(new String[0]);
 	}
 
 	@Override
 	public int GetLastID() {
-		return ContainerItems.get(ContainerItems.size() - 1).ID;
+		return GetLastID(ContainerItems);
 	}
 
 }

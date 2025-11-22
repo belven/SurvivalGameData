@@ -2,28 +2,32 @@ package com.belven.rpg.items;
 
 import java.util.ArrayList;
 
+import com.belven.rpg.TableColumn;
+import com.belven.rpg.TableDefinition;
+import com.belven.rpg.ValueType;
+
 public class Recipe extends RowData {
 	public static String RecipeTable = "\\RecipeData.csv";
 	public static ArrayList<Recipe> recipes = new ArrayList<>();
 
+	public static TableDefinition Table_Definition = new TableDefinition("CraftingDevice", "CraftingDevice", new TableColumn("ID", ValueType.Integer), new TableColumn("Name", ValueType.String),
+			new TableColumn("CraftingTime", ValueType.Double));
+
 	String name;
-	int craftingDeviceID;
 	RecipeType type;
+	float craftingTime;
 
 	public Recipe() {
 		super(RecipeTable);
-		if (recipes.size() > 0) {
-			ID = GetLastID() + 1;
-		}
-
+		IncrementID(recipes);
 		recipes.add(this);
 	}
 
-	public static Recipe CreateRecipe(String name, RecipeType type, int craftingDeviceID, InputOutputData... inputOutputData) {
+	public static Recipe CreateRecipe(String name, RecipeType type, float craftingTime, InputOutputData... inputOutputData) {
 		Recipe data = new Recipe();
 		data.name = name;
 		data.type = type;
-		data.craftingDeviceID = craftingDeviceID;
+		data.craftingTime = craftingTime;
 
 		for (InputOutputData ioData : inputOutputData) {
 			RecipeInputOutputData.CreateRecipeInputOutputData(data.ID, ioData.ID);
@@ -32,19 +36,30 @@ public class Recipe extends RowData {
 		return data;
 	}
 
+	public static int GetRecipeID(String name) {
+		int id = -1;
+		for (Recipe r : recipes) {
+			if (r.name.equals(name)) {
+				id = r.ID;
+				break;
+			}
+		}
+		return id;
+	}
+
 	@Override
 	public String[] CreateData() {
 		ArrayList<String> rowData = new ArrayList<String>();
 		rowData.add(GetString(ID));
 		rowData.add(name);
 		rowData.add(type.toString());
-		rowData.add(GetString(craftingDeviceID));
+		rowData.add(GetString(craftingTime));
 		return rowData.toArray(new String[0]);
 	}
 
 	@Override
 	public int GetLastID() {
-		return recipes.get(recipes.size() - 1).ID;
+		return GetLastID(recipes);
 	}
 
 }

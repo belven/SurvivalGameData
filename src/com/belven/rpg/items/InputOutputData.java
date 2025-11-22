@@ -2,9 +2,17 @@ package com.belven.rpg.items;
 
 import java.util.ArrayList;
 
+import com.belven.rpg.TableColumn;
+import com.belven.rpg.TableDefinition;
+import com.belven.rpg.ValueType;
+
 public class InputOutputData extends RowData {
 	public static String InputOutputTable = "\\InputOutputData.csv";
 	public static ArrayList<InputOutputData> inputOutputs = new ArrayList<>();
+
+	public static TableDefinition Table_Definition = new TableDefinition("InputOutputData", "Recipe", new TableColumn("ID", ValueType.Double), new TableColumn("inputOutputID", ValueType.Integer),
+			new TableColumn("amount", ValueType.Double), new TableColumn("type", ValueType.Enumeration, InputOutputType.class.getSimpleName()),
+			new TableColumn("inputOrOutput", ValueType.Enumeration, InputOrOutput.class.getSimpleName()));
 
 	int ID;
 	int inputOutputID;
