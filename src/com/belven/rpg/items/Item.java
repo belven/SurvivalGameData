@@ -21,17 +21,14 @@ public class Item extends RowData {
 
 	public Item(ItemData inData) {
 		super(Item_Table);
-		if (items.size() > 0) {
-			ID = GetLastID() + 1;
-		}
-
+		IncrementID(items);
 		data = inData;
 		items.add(this);
 	}
 
 	@Override
 	public int GetLastID() {
-		return items.get(items.size() - 1).ID;
+		return GetLastID(items);
 	}
 
 	public static Item CreateItem(ItemData data) {

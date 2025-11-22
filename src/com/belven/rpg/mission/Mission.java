@@ -2,23 +2,25 @@ package com.belven.rpg.mission;
 
 import java.util.ArrayList;
 
+import com.belven.rpg.TableColumn;
+import com.belven.rpg.TableDefinition;
+import com.belven.rpg.ValueType;
 import com.belven.rpg.items.RowData;
 
+// TODO this class is unused
 public class Mission extends RowData {
 	public MissionData data;
 
 	public static String MissionTable = "\\MissionData.csv";
 	public static ArrayList<Mission> Missions = new ArrayList<>();
 
+	public static TableDefinition Table_Definition = new TableDefinition("Mission", "Mission", new TableColumn("ID", ValueType.Integer),
+			new TableColumn("Type", ValueType.Enumeration, MissionType.class.getSimpleName()));
+
 	public Mission(MissionData data) {
 		super(MissionTable);
-
 		this.data = data;
-
-		if (Missions.size() > 0) {
-			ID = GetLastID() + 1;
-		}
-
+		IncrementID(Missions);
 		Missions.add(this);
 	}
 
@@ -32,7 +34,7 @@ public class Mission extends RowData {
 
 	@Override
 	public int GetLastID() {
-		return Missions.get(Missions.size() - 1).ID;
+		return GetLastID(Missions);
 	}
 
 	public MissionData getData() {

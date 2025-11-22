@@ -2,19 +2,23 @@ package com.belven.rpg.items;
 
 import java.util.ArrayList;
 
+import com.belven.rpg.TableColumn;
+import com.belven.rpg.TableDefinition;
+import com.belven.rpg.ValueType;
+
 public class RecipeInputOutputData extends RowData {
 	public static String RecipeInputOutputDataTable = "\\RecipeInputOutputData.csv";
 	public static ArrayList<RecipeInputOutputData> RecipeInputOutputData = new ArrayList<>();
+
+	public static TableDefinition Table_Definition = new TableDefinition("RecipeInputOutputData", "RecipeInputOutputData", new TableColumn("ID", ValueType.Integer),
+			new TableColumn("RecipeID", ValueType.Integer), new TableColumn("InputOutputDataID", ValueType.Integer));
 
 	int recipeID;
 	int inputOutputDataID;
 
 	public RecipeInputOutputData() {
 		super(RecipeInputOutputDataTable);
-		if (RecipeInputOutputData.size() > 0) {
-			ID = GetLastID() + 1;
-		}
-
+		IncrementID(RecipeInputOutputData);
 		RecipeInputOutputData.add(this);
 	}
 
@@ -36,7 +40,7 @@ public class RecipeInputOutputData extends RowData {
 
 	@Override
 	public int GetLastID() {
-		return RecipeInputOutputData.get(RecipeInputOutputData.size() - 1).ID;
+		return GetLastID(RecipeInputOutputData);
 	}
 
 }

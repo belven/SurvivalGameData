@@ -2,6 +2,9 @@ package com.belven.rpg.weapons;
 
 import java.util.ArrayList;
 
+import com.belven.rpg.TableColumn;
+import com.belven.rpg.TableDefinition;
+import com.belven.rpg.ValueType;
 import com.belven.rpg.items.Item;
 import com.belven.rpg.items.ItemData;
 import com.belven.rpg.items.ItemType;
@@ -10,6 +13,9 @@ import com.belven.rpg.items.RowData;
 public class MeleeWeapon extends RowData {
 	public static ArrayList<MeleeWeapon> meleeWeapons = new ArrayList<>();
 	public static String WeaponTable = "\\MeleeWeaponData.csv";
+
+	public static TableDefinition Table_Definition = new TableDefinition("MeleeWeapon", "MeleeWeapon", new TableColumn("ID", ValueType.Integer), new TableColumn("WeaponID", ValueType.Integer),
+			new TableColumn("CleaveRadius", ValueType.Float));
 
 	int weaponID;
 	float cleaveRadius;

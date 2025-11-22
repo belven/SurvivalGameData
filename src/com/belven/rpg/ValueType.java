@@ -1,5 +1,5 @@
 package com.belven.rpg;
 
 public enum ValueType {
-	Integer, String, Double, Enumeration, Vector
+	Integer, String, Float, Enumeration, Vector, Boolean
 }

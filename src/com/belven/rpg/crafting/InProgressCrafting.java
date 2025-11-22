@@ -14,7 +14,7 @@ public class InProgressCrafting extends RowData {
 
 	public static TableDefinition Table_Definition = new TableDefinition("InProgressCrafting", "InProgressCrafting", new TableColumn("ID", ValueType.Integer),
 			new TableColumn("InstanceCraftingDeviceID", ValueType.Integer), new TableColumn("RecipeID", ValueType.Integer), new TableColumn("QueuePosition", ValueType.Integer),
-			new TableColumn("Progress", ValueType.Double));
+			new TableColumn("Progress", ValueType.Float));
 
 	int instanceCraftingDeviceID;
 	int recipeID;

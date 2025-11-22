@@ -27,7 +27,7 @@ public class TableColumn {
 
 	String GetTypeString() {
 		switch (type) {
-		case Double:
+		case Float:
 			return "float";
 		case Integer:
 			return "int32";
@@ -35,6 +35,8 @@ public class TableColumn {
 			return "FString";
 		case Vector:
 			return "FVector";
+		case Boolean:
+			return "bool";
 		default:
 			break;
 

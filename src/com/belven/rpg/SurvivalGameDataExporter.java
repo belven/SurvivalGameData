@@ -90,6 +90,8 @@ public class SurvivalGameDataExporter {
 		Item.CreateItem(new ItemData("Metal", iconFolder + "Metal.Metal'", "", 10));
 		Item.CreateItem(new ItemData("Gunpowder", iconFolder + "Gunpowder.Gunpowder'", "", 100));
 		Item.CreateItem(new ItemData("Iron Ingot", iconFolder + "Iron.Iron'", "", 100));
+		Item.CreateItem(new ItemData("Raw Copper", iconFolder + "Iron.Iron'", "", 100));
+		Item.CreateItem(new ItemData("Copper Ingot", iconFolder + "Iron.Iron'", "", 100));
 
 		// Ammo
 		Item.CreateItem(new ItemData("7.62", iconFolder + "762.762'", "", 100, ItemType.Ammo));
@@ -149,55 +151,56 @@ public class SurvivalGameDataExporter {
 		ContainerData.CreateContainerData(10, lunchBox, containerMeshFolder + "Lunchbox.Lunchbox'");
 		ContainerData.CreateContainerData(15, secretCrate, containerMeshFolder + "Secret_Crate.Secret_Crate'");
 
-		new ContainerItem(medicalCase, "Bandage");
-		new ContainerItem(medicalCase, "First Aid Kit");
-		new ContainerItem(medicalCase, "Pistol");
-		new ContainerItem(medicalCase, "Soda");
-		new ContainerItem(medicalCase, "Sandwich");
-		new ContainerItem(medicalCase, "5.39");
+		ContainerItem.CreateContainerItem(medicalCase, "Bandage");
+		ContainerItem.CreateContainerItem(medicalCase, "First Aid Kit");
+		ContainerItem.CreateContainerItem(medicalCase, "Pistol");
+		ContainerItem.CreateContainerItem(medicalCase, "Soda");
+		ContainerItem.CreateContainerItem(medicalCase, "Sandwich");
+		ContainerItem.CreateContainerItem(medicalCase, "5.39");
 
-		new ContainerItem(medicalSupplies, "Bandage");
-		new ContainerItem(medicalSupplies, "First Aid Kit");
-		new ContainerItem(medicalSupplies, "Pistol");
-		new ContainerItem(medicalSupplies, "Soda");
-		new ContainerItem(medicalSupplies, "Sandwich");
-		new ContainerItem(medicalSupplies, "5.39");
+		ContainerItem.CreateContainerItem(medicalSupplies, "Bandage");
+		ContainerItem.CreateContainerItem(medicalSupplies, "First Aid Kit");
+		ContainerItem.CreateContainerItem(medicalSupplies, "Pistol");
+		ContainerItem.CreateContainerItem(medicalSupplies, "Soda");
+		ContainerItem.CreateContainerItem(medicalSupplies, "Sandwich");
+		ContainerItem.CreateContainerItem(medicalSupplies, "5.39");
 
-		new ContainerItem(SuppliesCrate, "Wood");
-		new ContainerItem(SuppliesCrate, "Nails");
-		new ContainerItem(SuppliesCrate, "Cloth");
-		new ContainerItem(SuppliesCrate, "Barricade");
-		new ContainerItem(SuppliesCrate, "Metal");
-		new ContainerItem(SuppliesCrate, "Gunpowder");
+		ContainerItem.CreateContainerItem(SuppliesCrate, "Wood");
+		ContainerItem.CreateContainerItem(SuppliesCrate, "Nails");
+		ContainerItem.CreateContainerItem(SuppliesCrate, "Cloth");
+		ContainerItem.CreateContainerItem(SuppliesCrate, "Barricade");
+		ContainerItem.CreateContainerItem(SuppliesCrate, "Metal");
+		ContainerItem.CreateContainerItem(SuppliesCrate, "Gunpowder");
+		ContainerItem.CreateContainerItem(SuppliesCrate, "Raw Copper");
 
-		new ContainerItem(lunchBox, "Soda");
-		new ContainerItem(lunchBox, "Sandwich");
-		new ContainerItem(lunchBox, "Bread");
-		new ContainerItem(lunchBox, "Raw Meat");
-		new ContainerItem(lunchBox, "Raw Veg");
+		ContainerItem.CreateContainerItem(lunchBox, "Soda");
+		ContainerItem.CreateContainerItem(lunchBox, "Sandwich");
+		ContainerItem.CreateContainerItem(lunchBox, "Bread");
+		ContainerItem.CreateContainerItem(lunchBox, "Raw Meat");
+		ContainerItem.CreateContainerItem(lunchBox, "Raw Veg");
 
-		new ContainerItem(militaryCrate, "Pistol");
-		new ContainerItem(militaryCrate, "Sniper");
-		new ContainerItem(militaryCrate, "MP5");
-		new ContainerItem(militaryCrate, "SMG");
+		ContainerItem.CreateContainerItem(militaryCrate, "Pistol");
+		ContainerItem.CreateContainerItem(militaryCrate, "Sniper");
+		ContainerItem.CreateContainerItem(militaryCrate, "MP5");
+		ContainerItem.CreateContainerItem(militaryCrate, "SMG");
 
-		new ContainerItem(militaryCrate, "5.39");
-		new ContainerItem(militaryCrate, "7.62");
+		ContainerItem.CreateContainerItem(militaryCrate, "5.39");
+		ContainerItem.CreateContainerItem(militaryCrate, "7.62");
 
-		new ContainerItem(militaryCrate, "Military Chestpiece");
-		new ContainerItem(militaryCrate, "Military Vest");
-		new ContainerItem(militaryCrate, "Military Legs");
-		new ContainerItem(militaryCrate, "Military Headpiece");
+		ContainerItem.CreateContainerItem(militaryCrate, "Military Chestpiece");
+		ContainerItem.CreateContainerItem(militaryCrate, "Military Vest");
+		ContainerItem.CreateContainerItem(militaryCrate, "Military Legs");
+		ContainerItem.CreateContainerItem(militaryCrate, "Military Headpiece");
 
-		new ContainerItem(secretCrate, "Bandage");
-		new ContainerItem(secretCrate, "First Aid Kit");
-		new ContainerItem(secretCrate, "Pistol");
-		new ContainerItem(secretCrate, "Soda");
-		new ContainerItem(secretCrate, "Sandwich");
-		new ContainerItem(secretCrate, "MP5");
-		new ContainerItem(secretCrate, "Pistol");
-		new ContainerItem(secretCrate, "Military Vest");
-		new ContainerItem(secretCrate, "Military Legs");
+		ContainerItem.CreateContainerItem(secretCrate, "Bandage");
+		ContainerItem.CreateContainerItem(secretCrate, "First Aid Kit");
+		ContainerItem.CreateContainerItem(secretCrate, "Pistol");
+		ContainerItem.CreateContainerItem(secretCrate, "Soda");
+		ContainerItem.CreateContainerItem(secretCrate, "Sandwich");
+		ContainerItem.CreateContainerItem(secretCrate, "MP5");
+		ContainerItem.CreateContainerItem(secretCrate, "Pistol");
+		ContainerItem.CreateContainerItem(secretCrate, "Military Vest");
+		ContainerItem.CreateContainerItem(secretCrate, "Military Legs");
 	}
 
 	// Missions
@@ -210,9 +213,9 @@ public class SurvivalGameDataExporter {
 
 		MissionType type = MissionType.Medical;
 
-		new MissionContainer(type, medicalSupplies);
-		new MissionContainer(type, medicalCase);
-		new MissionContainer(type, lunchBox);
+		MissionContainer.CreateMissionContainer(type, medicalSupplies);
+		MissionContainer.CreateMissionContainer(type, medicalCase);
+		MissionContainer.CreateMissionContainer(type, lunchBox);
 
 		// Mission Loadouts
 		MissionLoadout.CreateMissonLoadout(new MissionLoadoutData(type, "Doctor"));
@@ -223,16 +226,16 @@ public class SurvivalGameDataExporter {
 		MissionLoadout.CreateMissonLoadout(new MissionLoadoutData(type, "Sniper Guard"));
 
 		type = MissionType.Civilian;
-		new MissionContainer(type, SuppliesCrate);
-		new MissionContainer(type, lunchBox);
+		MissionContainer.CreateMissionContainer(type, SuppliesCrate);
+		MissionContainer.CreateMissionContainer(type, lunchBox);
 
 		MissionLoadout.CreateMissonLoadout(new MissionLoadoutData(type, "Civillian"));
 		MissionLoadout.CreateMissonLoadout(new MissionLoadoutData(type, "Civillian Guard A"));
 		MissionLoadout.CreateMissonLoadout(new MissionLoadoutData(type, "Civillian Guard B"));
 
 		type = MissionType.Military;
-		new MissionContainer(type, medicalSupplies);
-		new MissionContainer(type, militaryCrate);
+		MissionContainer.CreateMissionContainer(type, medicalSupplies);
+		MissionContainer.CreateMissionContainer(type, militaryCrate);
 
 		MissionLoadout.CreateMissonLoadout(new MissionLoadoutData(type, "Military Sniper"));
 		MissionLoadout.CreateMissonLoadout(new MissionLoadoutData(type, "Military Support"));
@@ -240,8 +243,8 @@ public class SurvivalGameDataExporter {
 		MissionLoadout.CreateMissonLoadout(new MissionLoadoutData(type, "Military Support"));
 
 		type = MissionType.Secret;
-		new MissionContainer(type, secretCrate);
-		new MissionContainer(type, lunchBox);
+		MissionContainer.CreateMissionContainer(type, secretCrate);
+		MissionContainer.CreateMissionContainer(type, lunchBox);
 
 		MissionLoadout.CreateMissonLoadout(new MissionLoadoutData(type, "Doctor"));
 		MissionLoadout.CreateMissonLoadout(new MissionLoadoutData(type, "Medical Staff"));
@@ -278,6 +281,9 @@ public class SurvivalGameDataExporter {
 				InputOutputData.CreateInputOutputData("Energy", 5, InputOutputType.Power, InputOrOutput.Input),
 				InputOutputData.CreateInputOutputData("Iron Ingot", 1, InputOutputType.Item, InputOrOutput.Output));
 
+		Recipe.CreateRecipe("Copper Ingot", RecipeType.Manual, 5, InputOutputData.CreateInputOutputData("Raw Copper", 2, InputOutputType.Item, InputOrOutput.Input),
+				InputOutputData.CreateInputOutputData("Copper Ingot", 1, InputOutputType.Item, InputOrOutput.Output));
+
 		String deviceName = CraftingDeviceInventory;
 
 		CraftingDevice.CreateCraftingDevice(deviceName);
@@ -287,11 +293,11 @@ public class SurvivalGameDataExporter {
 		CraftingDeviceRecipe.CreateCraftingDeviceRecipe(deviceName, "Bandage");
 
 		deviceName = CraftingDeviceCookingPot;
-
 		CraftingDevice.CreateCraftingDevice(CraftingDeviceCookingPot);
 
 		deviceName = CraftingDeviceFurnace;
 		CraftingDevice.CreateCraftingDevice(deviceName);
+
 		CraftingDeviceRecipe.CreateCraftingDeviceRecipe(deviceName, "Iron Ingot");
 
 		deviceName = CraftingDeviceWorkBench;
@@ -319,11 +325,25 @@ public class SurvivalGameDataExporter {
 	// Table Definitions
 	static {
 		AddTableDefinition(Item.class);
+		AddTableDefinition(Armour.class);
+		AddTableDefinition(Consumable.class);
+		AddTableDefinition(ContainerData.class);
+		AddTableDefinition(ContainerItem.class);
+		AddTableDefinition(Recipe.class);
+		AddTableDefinition(RecipeInputOutputData.class);
 		AddTableDefinition(InputOutputData.class);
 		AddTableDefinition(CraftingDeviceRecipe.class);
 		AddTableDefinition(CraftingDevice.class);
 		AddTableDefinition(InstanceCraftingDevice.class);
 		AddTableDefinition(InProgressCrafting.class);
+		AddTableDefinition(Weapon.class);
+		AddTableDefinition(RangedWeapon.class);
+		AddTableDefinition(MeleeWeapon.class);
+		AddTableDefinition(ProjectileWeapon.class);
+		AddTableDefinition(Loadout.class);
+		AddTableDefinition(Mission.class);
+		AddTableDefinition(MissionLoadout.class);
+		AddTableDefinition(MissionContainer.class);
 	}
 
 	public static void SaveData(ArrayList<String[]> data, String filePath) {
@@ -339,38 +359,38 @@ public class SurvivalGameDataExporter {
 	}
 
 	public static void main(String[] args) {
-		SaveRowData(Item.items);
-		SaveRowData(Weapon.weapons);
-		SaveRowData(RangedWeapon.rangedWeapons);
-		SaveRowData(MeleeWeapon.meleeWeapons);
-		SaveRowData(ProjectileWeapon.ProjectileWeapons);
-		SaveRowData(Armour.armour);
-		SaveRowData(Loadout.loadouts);
-		SaveRowData(ContainerData.ContainerData);
-		SaveRowData(Consumable.Consumables);
-		SaveRowData(Mission.Missions);
-		SaveRowData(MissionLoadout.MissionLoadouts);
-		SaveRowData(MissionItems.MissionItems);
-		SaveRowData(MissionContainer.MissionContainers);
-		SaveRowData(ContainerItem.ContainerItems);
-		SaveRowData(Recipe.recipes);
-		SaveRowData(InputOutputData.inputOutputs);
-		SaveRowData(RecipeInputOutputData.RecipeInputOutputData);
-		SaveRowData(CraftingDevice.craftingDevices);
-		SaveRowData(CraftingDeviceRecipe.craftingDeviceRecipes);
-		SaveRowData(InstanceCraftingDevice.instanceCraftingDevices);
-		SaveRowData(InProgressCrafting.inProgressCraftingData);
+		SaveRowData(Item.class, Item.items);
+		SaveRowData(Weapon.class, Weapon.weapons);
+		SaveRowData(RangedWeapon.class, RangedWeapon.rangedWeapons);
+		SaveRowData(MeleeWeapon.class, MeleeWeapon.meleeWeapons);
+		SaveRowData(ProjectileWeapon.class, ProjectileWeapon.ProjectileWeapons);
+		SaveRowData(Armour.class, Armour.armour);
+		SaveRowData(Loadout.class, Loadout.loadouts);
+		SaveRowData(ContainerData.class, ContainerData.ContainerData);
+		SaveRowData(Consumable.class, Consumable.Consumables);
+		SaveRowData(Mission.class, Mission.Missions);
+		SaveRowData(MissionLoadout.class, MissionLoadout.MissionLoadouts);
+		SaveRowData(MissionItems.class, MissionItems.MissionItems);
+		SaveRowData(MissionContainer.class, MissionContainer.MissionContainers);
+		SaveRowData(ContainerItem.class, ContainerItem.ContainerItems);
+		SaveRowData(Recipe.class, Recipe.recipes);
+		SaveRowData(InputOutputData.class, InputOutputData.inputOutputs);
+		SaveRowData(RecipeInputOutputData.class, RecipeInputOutputData.RecipeInputOutputData);
+		SaveRowData(CraftingDevice.class, CraftingDevice.craftingDevices);
+		SaveRowData(CraftingDeviceRecipe.class, CraftingDeviceRecipe.craftingDeviceRecipes);
+		SaveRowData(InstanceCraftingDevice.class, InstanceCraftingDevice.instanceCraftingDevices);
+		SaveRowData(InProgressCrafting.class, InProgressCrafting.inProgressCraftingData);
 	}
 
-	static <T extends RowData> void SaveRowData(ArrayList<T> data) {
+	static <T extends RowData> void SaveRowData(Class<?> clazz, ArrayList<T> data) {
 		if (!data.isEmpty()) {
 			ArrayList<String[]> dataStrings = new ArrayList<String[]>();
 
 			T firstItem = data.get(0);
 			String tableName = firstItem.tableName;
 
-			if (tableDefinitions.containsKey(firstItem.getClass())) {
-				System.out.println(tableDefinitions.get(firstItem.getClass()).toString());
+			if (tableDefinitions.containsKey(clazz)) {
+				System.out.println(tableDefinitions.get(clazz).toString());
 			} else {
 				System.out.println("Table" + tableName + " is missing table def");
 			}
@@ -380,7 +400,16 @@ public class SurvivalGameDataExporter {
 			}
 			SaveData(dataStrings, tablesFolder + tableName);
 		} else {
-			System.out.println("Table is empty");
+// TODO make it possible to get the table path statically
+//			File csvOutputFile = new File(clazz.getDeclaredField("").get(null));
+//			if (!csvOutputFile.exists()) {
+//				FileWriter outputfile = new FileWriter(csvOutputFile);
+//				CSVWriter writer = new CSVWriter(outputfile);
+//				writer.writeAll(data);
+//				writer.close();
+//			}
+
+			System.out.println("Table " + clazz.getSimpleName() + " is empty");
 		}
 	}
 

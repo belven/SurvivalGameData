@@ -2,25 +2,32 @@ package com.belven.rpg.mission;
 
 import java.util.ArrayList;
 
+import com.belven.rpg.TableColumn;
+import com.belven.rpg.TableDefinition;
+import com.belven.rpg.ValueType;
 import com.belven.rpg.items.ContainerData;
 import com.belven.rpg.items.RowData;
 
 public class MissionContainer extends RowData {
-
-	public MissionType type;
-	public String containerName;
 	public static String MissionContainerTable = "\\MissionContainerData.csv";
 	public static ArrayList<MissionContainer> MissionContainers = new ArrayList<>();
 
-	public MissionContainer(MissionType type, String containerName) {
+	public static TableDefinition Table_Definition = new TableDefinition("MissionContainer", "MissionContainer", new TableColumn("ID", ValueType.Integer),
+			new TableColumn("Type", ValueType.Enumeration, MissionType.class.getSimpleName()), new TableColumn("ContainerID", ValueType.Integer));
+
+	public MissionType type;
+	public String containerName;
+
+	public static MissionContainer CreateMissionContainer(MissionType type, String containerName) {
+		MissionContainer mc = new MissionContainer();
+		mc.type = type;
+		mc.containerName = containerName;
+		return mc;
+	}
+
+	public MissionContainer() {
 		super(MissionContainerTable);
-
-		this.type = type;
-		this.containerName = containerName;
-
-		if (MissionContainers.size() > 0) {
-			ID = GetLastID() + 1;
-		}
+		IncrementID(MissionContainers);
 		MissionContainers.add(this);
 	}
 
@@ -35,7 +42,7 @@ public class MissionContainer extends RowData {
 
 	@Override
 	public int GetLastID() {
-		return MissionContainers.get(MissionContainers.size() - 1).ID;
+		return GetLastID(MissionContainers);
 	}
 
 }

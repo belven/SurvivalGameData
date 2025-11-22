@@ -64,7 +64,7 @@ public class TableDefinition {
 			value.append("data." + col.name + " = ");
 
 			switch (col.type) {
-			case Double:
+			case Float:
 				value.append("GetFloatFromString(" + indexPP + ");");
 				break;
 			case Enumeration:
@@ -78,6 +78,9 @@ public class TableDefinition {
 				break;
 			case Vector:
 				value.append("GetVectorFromString(" + indexPP + ");");
+				break;
+			case Boolean:
+				value.append("UItemStructs::GetBoolean(" + indexPP + ");");
 				break;
 			default:
 				break;

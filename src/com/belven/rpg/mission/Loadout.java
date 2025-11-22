@@ -2,6 +2,10 @@ package com.belven.rpg.mission;
 
 import java.util.ArrayList;
 
+import com.belven.rpg.TableColumn;
+import com.belven.rpg.TableDefinition;
+import com.belven.rpg.ValueType;
+import com.belven.rpg.items.CharacterType;
 import com.belven.rpg.items.Item;
 import com.belven.rpg.items.RowData;
 
@@ -10,20 +14,19 @@ public class Loadout extends RowData {
 
 	public static String LoadoutTable = "\\LoadoutData.csv";
 	public static ArrayList<Loadout> loadouts = new ArrayList<>();
-	
+
+	public static TableDefinition Table_Definition = new TableDefinition("Loadout", "Loadout", new TableColumn("ID", ValueType.Integer),
+			new TableColumn("Type", ValueType.Enumeration, CharacterType.class.getSimpleName()), new TableColumn("Name", ValueType.String), new TableColumn("Weapon", ValueType.Integer),
+			new TableColumn("HeadArmour", ValueType.Integer), new TableColumn("ChestArmour", ValueType.Integer), new TableColumn("VestArmour", ValueType.Integer),
+			new TableColumn("LegsArmour", ValueType.Integer), new TableColumn("Health", ValueType.Integer), new TableColumn("MoveSpeed", ValueType.Integer));
 
 	public Loadout(LoadoutData data) {
 		super(LoadoutTable);
-		
 		this.data = data;
-		
-		if (loadouts.size() > 0) {
-			ID = GetLastID() + 1;
-		}
-
+		IncrementID(loadouts);
 		loadouts.add(this);
 	}
-	
+
 	@Override
 	public String[] CreateData() {
 		ArrayList<String> rowData = new ArrayList<String>();
@@ -39,19 +42,19 @@ public class Loadout extends RowData {
 		rowData.add(GetString(data.moveSpeed));
 		return rowData.toArray(new String[0]);
 	}
-	
+
 	public int GetItemByName(String name) {
-		for(Item i : Item.items) {		
-			if(i.GetData().name.equals(name))
+		for (Item i : Item.items) {
+			if (i.GetData().name.equals(name))
 				return i.ID;
 		}
-		
+
 		return -1;
 	}
 
 	@Override
 	public int GetLastID() {
-		return loadouts.get(loadouts.size() - 1).ID;
+		return GetLastID(loadouts);
 	}
 
 	public LoadoutData getData() {

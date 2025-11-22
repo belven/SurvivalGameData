@@ -10,8 +10,8 @@ public class Recipe extends RowData {
 	public static String RecipeTable = "\\RecipeData.csv";
 	public static ArrayList<Recipe> recipes = new ArrayList<>();
 
-	public static TableDefinition Table_Definition = new TableDefinition("CraftingDevice", "CraftingDevice", new TableColumn("ID", ValueType.Integer), new TableColumn("Name", ValueType.String),
-			new TableColumn("CraftingTime", ValueType.Double));
+	public static TableDefinition Table_Definition = new TableDefinition("RecipeData", "Recipe", new TableColumn("ID", ValueType.Integer), new TableColumn("Name", ValueType.String),
+			new TableColumn("Type", ValueType.Enumeration, RecipeType.class.getSimpleName()), new TableColumn("CraftingTime", ValueType.Float));
 
 	String name;
 	RecipeType type;

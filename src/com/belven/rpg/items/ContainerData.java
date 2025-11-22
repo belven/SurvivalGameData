@@ -2,19 +2,24 @@ package com.belven.rpg.items;
 
 import java.util.ArrayList;
 
+import com.belven.rpg.TableColumn;
+import com.belven.rpg.TableDefinition;
+import com.belven.rpg.ValueType;
+
 public class ContainerData extends RowData {
 	public static String ContainerDataTable = "\\ContainerData.csv";
 	public static ArrayList<ContainerData> ContainerData = new ArrayList<>();
 
+	public static TableDefinition Table_Definition = new TableDefinition("ContainerData", "ContainerData", new TableColumn("ID", ValueType.Integer), new TableColumn("Slots", ValueType.Integer),
+			new TableColumn("Name", ValueType.String), new TableColumn("Mesh", ValueType.String));
+
 	int slots;
-	public String name;
+	String name;
 	String mesh;
 
 	public ContainerData() {
 		super(ContainerDataTable);
-		if (ContainerData.size() > 0) {
-			ID = GetLastID() + 1;
-		}
+		IncrementID(ContainerData);
 
 		ContainerData.add(this);
 	}
@@ -48,7 +53,7 @@ public class ContainerData extends RowData {
 
 	@Override
 	public int GetLastID() {
-		return ContainerData.get(ContainerData.size() - 1).ID;
+		return GetLastID(ContainerData);
 	}
 
 }

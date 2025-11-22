@@ -2,6 +2,9 @@ package com.belven.rpg.mission;
 
 import java.util.ArrayList;
 
+import com.belven.rpg.TableColumn;
+import com.belven.rpg.TableDefinition;
+import com.belven.rpg.ValueType;
 import com.belven.rpg.items.RowData;
 
 public class MissionLoadout extends RowData {
@@ -10,15 +13,13 @@ public class MissionLoadout extends RowData {
 	public static String MissonTable = "\\MissionLoadoutData.csv";
 	public static ArrayList<MissionLoadout> MissionLoadouts = new ArrayList<>();
 
+	public static TableDefinition Table_Definition = new TableDefinition("MissionLoadout", "MissionLoadout", new TableColumn("ID", ValueType.Integer), new TableColumn("LoadoutID", ValueType.Integer),
+			new TableColumn("Type", ValueType.Enumeration, MissionType.class.getSimpleName()));
+
 	public MissionLoadout(MissionLoadoutData data) {
 		super(MissonTable);
-
 		this.data = data;
-
-		if (MissionLoadouts.size() > 0) {
-			ID = GetLastID() + 1;
-		}
-
+		IncrementID(MissionLoadouts);
 		MissionLoadouts.add(this);
 	}
 
@@ -42,7 +43,7 @@ public class MissionLoadout extends RowData {
 
 	@Override
 	public int GetLastID() {
-		return MissionLoadouts.get(MissionLoadouts.size() - 1).ID;
+		return GetLastID(MissionLoadouts);
 	}
 
 	public MissionLoadoutData getData() {

@@ -2,21 +2,31 @@ package com.belven.rpg.items;
 
 import java.util.ArrayList;
 
+import com.belven.rpg.TableColumn;
+import com.belven.rpg.TableDefinition;
+import com.belven.rpg.ValueType;
+
 public class ContainerItem extends RowData {
 
 	public static String ContainerItemTable = "\\ContainerItems.csv";
 	public static ArrayList<ContainerItem> ContainerItems = new ArrayList<>();
 
+	public static TableDefinition Table_Definition = new TableDefinition("ContainerItem", "ContainerItem", new TableColumn("ID", ValueType.Integer), new TableColumn("ContainerID", ValueType.Integer),
+			new TableColumn("ItemID", ValueType.Integer));
+
 	String containerName;
 	String itemName;
 
-	public ContainerItem(String containerName, String itemName) {
+	public static ContainerItem CreateContainerItem(String containerName, String itemName) {
+		ContainerItem ci = new ContainerItem();
+		ci.containerName = containerName;
+		ci.itemName = itemName;
+		return ci;
+	}
+
+	public ContainerItem() {
 		super(ContainerItemTable);
-		this.containerName = containerName;
-		this.itemName = itemName;
-
 		IncrementID(ContainerItems);
-
 		ContainerItems.add(this);
 	}
 

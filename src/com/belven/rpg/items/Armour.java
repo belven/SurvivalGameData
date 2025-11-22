@@ -2,21 +2,26 @@ package com.belven.rpg.items;
 
 import java.util.ArrayList;
 
+import com.belven.rpg.TableColumn;
+import com.belven.rpg.TableDefinition;
+import com.belven.rpg.ValueType;
+
 public class Armour extends RowData {
 	public static String ArmourTable = "\\ArmourData.csv";
 	public static ArrayList<Armour> armour = new ArrayList<>();
 
+	public static TableDefinition Table_Definition = new TableDefinition("Armour", "Armour", new TableColumn("ID", ValueType.Integer), new TableColumn("ItemID", ValueType.Integer),
+			new TableColumn("ContainerID", ValueType.Integer), new TableColumn("ArmourPosition", ValueType.Enumeration, ArmourPosition.class.getSimpleName()),
+			new TableColumn("resistance", ValueType.Integer));
+
 	int itemID;
+	int containerID;
 	ArmourPosition armourPosition;
 	int resistance;
-	int containerID;
 
 	public Armour() {
 		super(ArmourTable);
-		if (armour.size() > 0) {
-			ID = GetLastID() + 1;
-		}
-
+		IncrementID(armour);
 		armour.add(this);
 	}
 
@@ -49,7 +54,7 @@ public class Armour extends RowData {
 
 	@Override
 	public int GetLastID() {
-		return armour.get(armour.size() - 1).ID;
+		return GetLastID(armour);
 	}
 
 }

@@ -10,8 +10,8 @@ public class InputOutputData extends RowData {
 	public static String InputOutputTable = "\\InputOutputData.csv";
 	public static ArrayList<InputOutputData> inputOutputs = new ArrayList<>();
 
-	public static TableDefinition Table_Definition = new TableDefinition("InputOutputData", "Recipe", new TableColumn("ID", ValueType.Double), new TableColumn("inputOutputID", ValueType.Integer),
-			new TableColumn("amount", ValueType.Double), new TableColumn("type", ValueType.Enumeration, InputOutputType.class.getSimpleName()),
+	public static TableDefinition Table_Definition = new TableDefinition("InputOutputData", "Recipe", new TableColumn("ID", ValueType.Float), new TableColumn("inputOutputID", ValueType.Integer),
+			new TableColumn("amount", ValueType.Float), new TableColumn("type", ValueType.Enumeration, InputOutputType.class.getSimpleName()),
 			new TableColumn("inputOrOutput", ValueType.Enumeration, InputOrOutput.class.getSimpleName()));
 
 	int ID;
