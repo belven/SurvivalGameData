@@ -8,19 +8,19 @@ import com.belven.rpg.items.RowData;
 public class MissionItems extends RowData {
 	public MissionItemData data;
 
-	public static String MissonTable = "\\MissionItemData.csv";
-	public static ArrayList<MissionItems> MissionItems = new ArrayList<>();
+	public static String TableName = "\\MissionItemData.csv";
+	public static ArrayList<MissionItems> Data = new ArrayList<>();
 
 	public MissionItems(MissionItemData data) {
-		super(MissonTable);
+		super(TableName);
 
 		this.data = data;
 
-		if (MissionItems.size() > 0) {
+		if (Data.size() > 0) {
 			ID = GetLastID() + 1;
 		}
 
-		MissionItems.add(this);
+		Data.add(this);
 	}
 
 	@Override
@@ -34,7 +34,7 @@ public class MissionItems extends RowData {
 
 	@Override
 	public int GetLastID() {
-		return MissionItems.get(MissionItems.size() - 1).ID;
+		return Data.get(Data.size() - 1).ID;
 	}
 
 	public MissionItemData getData() {

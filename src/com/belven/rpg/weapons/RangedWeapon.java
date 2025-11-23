@@ -8,8 +8,8 @@ import com.belven.rpg.ValueType;
 import com.belven.rpg.items.RowData;
 
 public class RangedWeapon extends RowData {
-	public static ArrayList<RangedWeapon> rangedWeapons = new ArrayList<>();
-	public static String RangedWeaponTable = "\\RangedWeaponData.csv";
+	public static ArrayList<RangedWeapon> Data = new ArrayList<>();
+	public static String TableName = "\\RangedWeaponData.csv";
 
 	public static TableDefinition Table_Definition = new TableDefinition("RangedWeapon", "RangedWeapon", new TableColumn("ID", ValueType.Integer), new TableColumn("WeaponID", ValueType.Integer),
 			new TableColumn("Accuracy", ValueType.Float));
@@ -18,10 +18,10 @@ public class RangedWeapon extends RowData {
 	float accuracy;
 
 	public RangedWeapon() {
-		super(RangedWeaponTable);
-		IncrementID(rangedWeapons);
+		super(TableName);
+		IncrementID(Data);
 
-		rangedWeapons.add(this);
+		Data.add(this);
 
 	}
 
@@ -43,6 +43,6 @@ public class RangedWeapon extends RowData {
 
 	@Override
 	public int GetLastID() {
-		return GetLastID(rangedWeapons);
+		return GetLastID(Data);
 	}
 }

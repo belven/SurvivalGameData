@@ -8,8 +8,8 @@ import com.belven.rpg.ValueType;
 
 public class ContainerItem extends RowData {
 
-	public static String ContainerItemTable = "\\ContainerItems.csv";
-	public static ArrayList<ContainerItem> ContainerItems = new ArrayList<>();
+	public static String TableName = "\\ContainerItems.csv";
+	public static ArrayList<ContainerItem> Data = new ArrayList<>();
 
 	public static TableDefinition Table_Definition = new TableDefinition("ContainerItem", "ContainerItem", new TableColumn("ID", ValueType.Integer), new TableColumn("ContainerID", ValueType.Integer),
 			new TableColumn("ItemID", ValueType.Integer));
@@ -25,9 +25,9 @@ public class ContainerItem extends RowData {
 	}
 
 	public ContainerItem() {
-		super(ContainerItemTable);
-		IncrementID(ContainerItems);
-		ContainerItems.add(this);
+		super(TableName);
+		IncrementID(Data);
+		Data.add(this);
 	}
 
 	@Override
@@ -41,7 +41,7 @@ public class ContainerItem extends RowData {
 
 	@Override
 	public int GetLastID() {
-		return GetLastID(ContainerItems);
+		return GetLastID(Data);
 	}
 
 }

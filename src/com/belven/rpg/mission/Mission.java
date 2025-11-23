@@ -11,17 +11,17 @@ import com.belven.rpg.items.RowData;
 public class Mission extends RowData {
 	public MissionData data;
 
-	public static String MissionTable = "\\MissionData.csv";
-	public static ArrayList<Mission> Missions = new ArrayList<>();
+	public static String TableName = "\\MissionData.csv";
+	public static ArrayList<Mission> Data = new ArrayList<>();
 
 	public static TableDefinition Table_Definition = new TableDefinition("Mission", "Mission", new TableColumn("ID", ValueType.Integer),
 			new TableColumn("Type", ValueType.Enumeration, MissionType.class.getSimpleName()));
 
 	public Mission(MissionData data) {
-		super(MissionTable);
+		super(TableName);
 		this.data = data;
-		IncrementID(Missions);
-		Missions.add(this);
+		IncrementID(Data);
+		Data.add(this);
 	}
 
 	@Override
@@ -34,7 +34,7 @@ public class Mission extends RowData {
 
 	@Override
 	public int GetLastID() {
-		return GetLastID(Missions);
+		return GetLastID(Data);
 	}
 
 	public MissionData getData() {

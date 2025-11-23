@@ -11,8 +11,8 @@ import com.belven.rpg.items.ItemType;
 import com.belven.rpg.items.RowData;
 
 public class ProjectileWeapon extends RowData {
-	public static ArrayList<ProjectileWeapon> ProjectileWeapons = new ArrayList<>();
-	public static String ProjectileTable = "\\ProjectileWeaponData.csv";
+	public static ArrayList<ProjectileWeapon> Data = new ArrayList<>();
+	public static String TableName = "\\ProjectileWeaponData.csv";
 
 	public static TableDefinition Table_Definition = new TableDefinition("ProjectileWeapon", "ProjectileWeapon", new TableColumn("ID", ValueType.Integer),
 			new TableColumn("RangedWeaponID", ValueType.Integer), new TableColumn("AmmoType", ValueType.Integer), new TableColumn("MagazineSize", ValueType.Integer),
@@ -21,9 +21,9 @@ public class ProjectileWeapon extends RowData {
 	ProjectileWeaponData data;
 
 	public ProjectileWeapon() {
-		super(ProjectileTable);
-		IncrementID(ProjectileWeapons);
-		ProjectileWeapons.add(this);
+		super(TableName);
+		IncrementID(Data);
+		Data.add(this);
 	}
 
 	public String[] CreateData() {
@@ -38,7 +38,7 @@ public class ProjectileWeapon extends RowData {
 	}
 
 	public int GetItemByName(String name) {
-		for (Item i : Item.items) {
+		for (Item i : Item.Data) {
 			if (i.GetData().name.equals(name))
 				return i.ID;
 		}
@@ -63,7 +63,7 @@ public class ProjectileWeapon extends RowData {
 
 	@Override
 	public int GetLastID() {
-		return GetLastID(ProjectileWeapons);
+		return GetLastID(Data);
 	}
 
 }

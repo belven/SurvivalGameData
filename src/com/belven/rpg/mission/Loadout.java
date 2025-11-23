@@ -12,8 +12,8 @@ import com.belven.rpg.items.RowData;
 public class Loadout extends RowData {
 	public LoadoutData data;
 
-	public static String LoadoutTable = "\\LoadoutData.csv";
-	public static ArrayList<Loadout> loadouts = new ArrayList<>();
+	public static String TableName = "\\LoadoutData.csv";
+	public static ArrayList<Loadout> Data = new ArrayList<>();
 
 	public static TableDefinition Table_Definition = new TableDefinition("Loadout", "Loadout", new TableColumn("ID", ValueType.Integer),
 			new TableColumn("Type", ValueType.Enumeration, CharacterType.class.getSimpleName()), new TableColumn("Name", ValueType.String), new TableColumn("Weapon", ValueType.Integer),
@@ -21,10 +21,10 @@ public class Loadout extends RowData {
 			new TableColumn("LegsArmour", ValueType.Integer), new TableColumn("Health", ValueType.Integer), new TableColumn("MoveSpeed", ValueType.Integer));
 
 	public Loadout(LoadoutData data) {
-		super(LoadoutTable);
+		super(TableName);
 		this.data = data;
-		IncrementID(loadouts);
-		loadouts.add(this);
+		IncrementID(Data);
+		Data.add(this);
 	}
 
 	@Override
@@ -44,7 +44,7 @@ public class Loadout extends RowData {
 	}
 
 	public int GetItemByName(String name) {
-		for (Item i : Item.items) {
+		for (Item i : Item.Data) {
 			if (i.GetData().name.equals(name))
 				return i.ID;
 		}
@@ -54,7 +54,7 @@ public class Loadout extends RowData {
 
 	@Override
 	public int GetLastID() {
-		return GetLastID(loadouts);
+		return GetLastID(Data);
 	}
 
 	public LoadoutData getData() {

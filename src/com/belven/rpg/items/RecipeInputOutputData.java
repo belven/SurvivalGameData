@@ -7,8 +7,8 @@ import com.belven.rpg.TableDefinition;
 import com.belven.rpg.ValueType;
 
 public class RecipeInputOutputData extends RowData {
-	public static String RecipeInputOutputDataTable = "\\RecipeInputOutputData.csv";
-	public static ArrayList<RecipeInputOutputData> RecipeInputOutputData = new ArrayList<>();
+	public static String TableName = "\\RecipeInputOutputData.csv";
+	public static ArrayList<RecipeInputOutputData> Data = new ArrayList<>();
 
 	public static TableDefinition Table_Definition = new TableDefinition("RecipeInputOutputData", "RecipeInputOutputData", new TableColumn("ID", ValueType.Integer),
 			new TableColumn("RecipeID", ValueType.Integer), new TableColumn("InputOutputDataID", ValueType.Integer));
@@ -17,9 +17,9 @@ public class RecipeInputOutputData extends RowData {
 	int inputOutputDataID;
 
 	public RecipeInputOutputData() {
-		super(RecipeInputOutputDataTable);
-		IncrementID(RecipeInputOutputData);
-		RecipeInputOutputData.add(this);
+		super(TableName);
+		IncrementID(Data);
+		Data.add(this);
 	}
 
 	public static RecipeInputOutputData CreateRecipeInputOutputData(int recipeID, int inputOutputDataID) {
@@ -40,7 +40,7 @@ public class RecipeInputOutputData extends RowData {
 
 	@Override
 	public int GetLastID() {
-		return GetLastID(RecipeInputOutputData);
+		return GetLastID(Data);
 	}
 
 }

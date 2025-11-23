@@ -9,8 +9,8 @@ import com.belven.rpg.items.ContainerData;
 import com.belven.rpg.items.RowData;
 
 public class MissionContainer extends RowData {
-	public static String MissionContainerTable = "\\MissionContainerData.csv";
-	public static ArrayList<MissionContainer> MissionContainers = new ArrayList<>();
+	public static String TableName = "\\MissionContainerData.csv";
+	public static ArrayList<MissionContainer> Data = new ArrayList<>();
 
 	public static TableDefinition Table_Definition = new TableDefinition("MissionContainer", "MissionContainer", new TableColumn("ID", ValueType.Integer),
 			new TableColumn("Type", ValueType.Enumeration, MissionType.class.getSimpleName()), new TableColumn("ContainerID", ValueType.Integer));
@@ -26,9 +26,9 @@ public class MissionContainer extends RowData {
 	}
 
 	public MissionContainer() {
-		super(MissionContainerTable);
-		IncrementID(MissionContainers);
-		MissionContainers.add(this);
+		super(TableName);
+		IncrementID(Data);
+		Data.add(this);
 	}
 
 	@Override
@@ -42,7 +42,7 @@ public class MissionContainer extends RowData {
 
 	@Override
 	public int GetLastID() {
-		return GetLastID(MissionContainers);
+		return GetLastID(Data);
 	}
 
 }

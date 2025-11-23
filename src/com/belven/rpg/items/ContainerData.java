@@ -7,8 +7,8 @@ import com.belven.rpg.TableDefinition;
 import com.belven.rpg.ValueType;
 
 public class ContainerData extends RowData {
-	public static String ContainerDataTable = "\\ContainerData.csv";
-	public static ArrayList<ContainerData> ContainerData = new ArrayList<>();
+	public static String TableName = "\\ContainerData.csv";
+	public static ArrayList<ContainerData> Data = new ArrayList<>();
 
 	public static TableDefinition Table_Definition = new TableDefinition("ContainerData", "ContainerData", new TableColumn("ID", ValueType.Integer), new TableColumn("Slots", ValueType.Integer),
 			new TableColumn("Name", ValueType.String), new TableColumn("Mesh", ValueType.String));
@@ -18,10 +18,10 @@ public class ContainerData extends RowData {
 	String mesh;
 
 	public ContainerData() {
-		super(ContainerDataTable);
-		IncrementID(ContainerData);
+		super(TableName);
+		IncrementID(Data);
 
-		ContainerData.add(this);
+		Data.add(this);
 	}
 
 	public static ContainerData CreateContainerData(int slots, String name, String mesh) {
@@ -33,7 +33,7 @@ public class ContainerData extends RowData {
 	}
 
 	public static int GetContainerByName(String name) {
-		for (ContainerData cd : ContainerData) {
+		for (ContainerData cd : Data) {
 			if (cd.name.equals(name)) {
 				return cd.ID;
 			}
@@ -53,7 +53,7 @@ public class ContainerData extends RowData {
 
 	@Override
 	public int GetLastID() {
-		return GetLastID(ContainerData);
+		return GetLastID(Data);
 	}
 
 }

@@ -8,8 +8,8 @@ import com.belven.rpg.ValueType;
 import com.belven.rpg.items.RowData;
 
 public class CraftingDevice extends RowData {
-	public static String CraftingDeviceTable = "\\CraftingDevice.csv";
-	public static ArrayList<CraftingDevice> craftingDevices = new ArrayList<>();
+	public static String TableName = "\\CraftingDevice.csv";
+	public static ArrayList<CraftingDevice> Data = new ArrayList<>();
 
 	public static TableDefinition Table_Definition = new TableDefinition("CraftingDevice", "CraftingDevice", new TableColumn("ID", ValueType.Integer), new TableColumn("Name", ValueType.String));
 
@@ -22,14 +22,14 @@ public class CraftingDevice extends RowData {
 	}
 
 	public CraftingDevice() {
-		super(CraftingDeviceTable);
-		IncrementID(craftingDevices);
-		craftingDevices.add(this);
+		super(TableName);
+		IncrementID(Data);
+		Data.add(this);
 	}
 
 	public static int GetCraftingDeviceID(String name) {
 		int id = -1;
-		for (CraftingDevice cd : craftingDevices) {
+		for (CraftingDevice cd : Data) {
 			if (cd.name.equals(name)) {
 				id = cd.ID;
 				break;
@@ -48,7 +48,7 @@ public class CraftingDevice extends RowData {
 
 	@Override
 	public int GetLastID() {
-		return GetLastID(craftingDevices);
+		return GetLastID(Data);
 	}
 
 }

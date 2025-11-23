@@ -11,8 +11,8 @@ import com.belven.rpg.items.RowData;
 
 public class InstanceCraftingDevice extends RowData {
 
-	public static String InstanceCraftingDeviceTable = "\\InstanceCraftingDevice.csv";
-	public static ArrayList<InstanceCraftingDevice> instanceCraftingDevices = new ArrayList<>();
+	public static String TableName = "\\InstanceCraftingDevice.csv";
+	public static ArrayList<InstanceCraftingDevice> Data = new ArrayList<>();
 	public static TableDefinition Table_Definition = new TableDefinition("InstanceCraftingDevice", "InstanceCraftingDevice", new TableColumn("ID", ValueType.Integer),
 			new TableColumn("CraftingDeviceID", ValueType.Integer), new TableColumn("Location", ValueType.Vector), new TableColumn("OwnerID", ValueType.Integer),
 			new TableColumn("OwnerType", ValueType.Enumeration, OwnerType.class.getSimpleName()));
@@ -33,9 +33,9 @@ public class InstanceCraftingDevice extends RowData {
 	}
 
 	public InstanceCraftingDevice() {
-		super(InstanceCraftingDeviceTable);
-		IncrementID(instanceCraftingDevices);
-		instanceCraftingDevices.add(this);
+		super(TableName);
+		IncrementID(Data);
+		Data.add(this);
 	}
 
 	@Override
@@ -51,7 +51,7 @@ public class InstanceCraftingDevice extends RowData {
 
 	@Override
 	public int GetLastID() {
-		return GetLastID(instanceCraftingDevices);
+		return GetLastID(Data);
 	}
 
 }

@@ -10,17 +10,17 @@ import com.belven.rpg.items.RowData;
 public class MissionLoadout extends RowData {
 	public MissionLoadoutData data;
 
-	public static String MissonTable = "\\MissionLoadoutData.csv";
-	public static ArrayList<MissionLoadout> MissionLoadouts = new ArrayList<>();
+	public static String TableName = "\\MissionLoadoutData.csv";
+	public static ArrayList<MissionLoadout> Data = new ArrayList<>();
 
 	public static TableDefinition Table_Definition = new TableDefinition("MissionLoadout", "MissionLoadout", new TableColumn("ID", ValueType.Integer), new TableColumn("LoadoutID", ValueType.Integer),
 			new TableColumn("Type", ValueType.Enumeration, MissionType.class.getSimpleName()));
 
 	public MissionLoadout(MissionLoadoutData data) {
-		super(MissonTable);
+		super(TableName);
 		this.data = data;
-		IncrementID(MissionLoadouts);
-		MissionLoadouts.add(this);
+		IncrementID(Data);
+		Data.add(this);
 	}
 
 	@Override
@@ -33,7 +33,7 @@ public class MissionLoadout extends RowData {
 	}
 
 	public int GetLoadoutByName(String name) {
-		for (Loadout i : Loadout.loadouts) {
+		for (Loadout i : Loadout.Data) {
 			if (i.getData().name.equals(name))
 				return i.ID;
 		}
@@ -43,7 +43,7 @@ public class MissionLoadout extends RowData {
 
 	@Override
 	public int GetLastID() {
-		return GetLastID(MissionLoadouts);
+		return GetLastID(Data);
 	}
 
 	public MissionLoadoutData getData() {

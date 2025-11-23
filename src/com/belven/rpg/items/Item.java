@@ -7,8 +7,8 @@ import com.belven.rpg.TableDefinition;
 import com.belven.rpg.ValueType;
 
 public class Item extends RowData {
-	public static String Item_Table = "\\ItemData.csv";
-	public static ArrayList<Item> items = new ArrayList<Item>();
+	public static String TableName = "\\ItemData.csv";
+	public static ArrayList<Item> Data = new ArrayList<Item>();
 	private ItemData data;
 
 	public static TableDefinition Table_Definition = new TableDefinition("Item", "Item", new TableColumn("ID", ValueType.Integer), new TableColumn("Name", ValueType.String),
@@ -20,15 +20,15 @@ public class Item extends RowData {
 	}
 
 	public Item(ItemData inData) {
-		super(Item_Table);
-		IncrementID(items);
+		super(TableName);
+		IncrementID(Data);
 		data = inData;
-		items.add(this);
+		Data.add(this);
 	}
 
 	@Override
 	public int GetLastID() {
-		return GetLastID(items);
+		return GetLastID(Data);
 	}
 
 	public static Item CreateItem(ItemData data) {
@@ -36,7 +36,7 @@ public class Item extends RowData {
 	}
 
 	public static int GetItemByName(String name) {
-		for (Item i : Item.items) {
+		for (Item i : Item.Data) {
 			if (i.GetData().name.equals(name))
 				return i.ID;
 		}

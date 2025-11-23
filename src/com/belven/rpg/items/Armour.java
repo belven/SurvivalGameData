@@ -7,8 +7,8 @@ import com.belven.rpg.TableDefinition;
 import com.belven.rpg.ValueType;
 
 public class Armour extends RowData {
-	public static String ArmourTable = "\\ArmourData.csv";
-	public static ArrayList<Armour> armour = new ArrayList<>();
+	public static String TableName = "\\ArmourData.csv";
+	public static ArrayList<Armour> Data = new ArrayList<>();
 
 	public static TableDefinition Table_Definition = new TableDefinition("Armour", "Armour", new TableColumn("ID", ValueType.Integer), new TableColumn("ItemID", ValueType.Integer),
 			new TableColumn("ContainerID", ValueType.Integer), new TableColumn("ArmourPosition", ValueType.Enumeration, ArmourPosition.class.getSimpleName()),
@@ -20,9 +20,9 @@ public class Armour extends RowData {
 	int resistance;
 
 	public Armour() {
-		super(ArmourTable);
-		IncrementID(armour);
-		armour.add(this);
+		super(TableName);
+		IncrementID(Data);
+		Data.add(this);
 	}
 
 	public static Armour CreateArmour(ItemData itemData, ArmourPosition armourPosition, int containerID) {
@@ -54,7 +54,7 @@ public class Armour extends RowData {
 
 	@Override
 	public int GetLastID() {
-		return GetLastID(armour);
+		return GetLastID(Data);
 	}
 
 }

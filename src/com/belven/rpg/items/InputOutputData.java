@@ -7,8 +7,8 @@ import com.belven.rpg.TableDefinition;
 import com.belven.rpg.ValueType;
 
 public class InputOutputData extends RowData {
-	public static String InputOutputTable = "\\InputOutputData.csv";
-	public static ArrayList<InputOutputData> inputOutputs = new ArrayList<>();
+	public static String TableName = "\\InputOutputData.csv";
+	public static ArrayList<InputOutputData> Data = new ArrayList<>();
 
 	public static TableDefinition Table_Definition = new TableDefinition("InputOutputData", "Recipe", new TableColumn("ID", ValueType.Float), new TableColumn("inputOutputID", ValueType.Integer),
 			new TableColumn("amount", ValueType.Float), new TableColumn("type", ValueType.Enumeration, InputOutputType.class.getSimpleName()),
@@ -21,12 +21,12 @@ public class InputOutputData extends RowData {
 	InputOrOutput inputOrOutput;
 
 	public InputOutputData() {
-		super(InputOutputTable);
-		if (inputOutputs.size() > 0) {
+		super(TableName);
+		if (Data.size() > 0) {
 			ID = GetLastID() + 1;
 		}
 
-		inputOutputs.add(this);
+		Data.add(this);
 	}
 
 	public static InputOutputData CreateInputOutputData(String typeName, int amount, InputOutputType type, InputOrOutput inputOrOutput) {
@@ -64,7 +64,7 @@ public class InputOutputData extends RowData {
 
 	@Override
 	public int GetLastID() {
-		return inputOutputs.get(inputOutputs.size() - 1).ID;
+		return Data.get(Data.size() - 1).ID;
 	}
 
 }

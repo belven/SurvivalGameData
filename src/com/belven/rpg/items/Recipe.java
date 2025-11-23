@@ -7,8 +7,8 @@ import com.belven.rpg.TableDefinition;
 import com.belven.rpg.ValueType;
 
 public class Recipe extends RowData {
-	public static String RecipeTable = "\\RecipeData.csv";
-	public static ArrayList<Recipe> recipes = new ArrayList<>();
+	public static String TableName = "\\RecipeData.csv";
+	public static ArrayList<Recipe> Data = new ArrayList<>();
 
 	public static TableDefinition Table_Definition = new TableDefinition("RecipeData", "Recipe", new TableColumn("ID", ValueType.Integer), new TableColumn("Name", ValueType.String),
 			new TableColumn("Type", ValueType.Enumeration, RecipeType.class.getSimpleName()), new TableColumn("CraftingTime", ValueType.Float));
@@ -18,9 +18,9 @@ public class Recipe extends RowData {
 	float craftingTime;
 
 	public Recipe() {
-		super(RecipeTable);
-		IncrementID(recipes);
-		recipes.add(this);
+		super(TableName);
+		IncrementID(Data);
+		Data.add(this);
 	}
 
 	public static Recipe CreateRecipe(String name, RecipeType type, float craftingTime, InputOutputData... inputOutputData) {
@@ -38,7 +38,7 @@ public class Recipe extends RowData {
 
 	public static int GetRecipeID(String name) {
 		int id = -1;
-		for (Recipe r : recipes) {
+		for (Recipe r : Data) {
 			if (r.name.equals(name)) {
 				id = r.ID;
 				break;
@@ -59,7 +59,7 @@ public class Recipe extends RowData {
 
 	@Override
 	public int GetLastID() {
-		return GetLastID(recipes);
+		return GetLastID(Data);
 	}
 
 }

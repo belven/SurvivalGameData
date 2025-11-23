@@ -2,8 +2,8 @@ package com.belven.rpg;
 
 import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import com.belven.rpg.crafting.CraftingDevice;
 import com.belven.rpg.crafting.CraftingDeviceRecipe;
@@ -33,7 +33,6 @@ import com.belven.rpg.mission.LoadoutData;
 import com.belven.rpg.mission.Mission;
 import com.belven.rpg.mission.MissionContainer;
 import com.belven.rpg.mission.MissionData;
-import com.belven.rpg.mission.MissionItems;
 import com.belven.rpg.mission.MissionLoadout;
 import com.belven.rpg.mission.MissionLoadoutData;
 import com.belven.rpg.mission.MissionType;
@@ -51,13 +50,12 @@ public class SurvivalGameDataExporter {
 	static String weaponsMeshFolder = "StaticMesh'/Game/FirstPerson/Weapons/";
 	static String containerMeshFolder = "StaticMesh'/Game/FirstPerson/LootBoxes/";
 
-	static HashMap<Class<?>, TableDefinition> tableDefinitions = new HashMap<>();
+	static ArrayList<Class<?>> classes = new ArrayList<>();
 
 	// Items
 	static {
 
 		// Weapons
-
 		Item.CreateItem(new ItemData("Test Ammo", iconFolder + "539.539'", "", 30, ItemType.Ammo));
 		ProjectileWeapon.CreateProjectileWeapon(new ItemData("Test Weapon", 1), new WeaponData(15000, 11, 0.01f, false, GearType.Weapon), 0.9995f,
 				new ProjectileWeaponData("Test Ammo", 10, 0.2f, 15000));
@@ -308,42 +306,28 @@ public class SurvivalGameDataExporter {
 		CraftingDeviceRecipe.CreateCraftingDeviceRecipe(deviceName, "Bandage");
 	}
 
-	static void AddTableDefinition(Class<?> clazz) {
-		TableDefinition td;
-		try {
-			td = (TableDefinition) clazz.getDeclaredField("Table_Definition").get(null);
-			AddTableDefinition(clazz, td);
-		} catch (IllegalArgumentException | IllegalAccessException | NoSuchFieldException | SecurityException e) {
-			e.printStackTrace();
-		}
-	}
-
-	static void AddTableDefinition(Class<?> clazz, TableDefinition td) {
-		tableDefinitions.put(clazz, td);
-	}
-
-	// Table Definitions
+	// Class setups
 	static {
-		AddTableDefinition(Item.class);
-		AddTableDefinition(Armour.class);
-		AddTableDefinition(Consumable.class);
-		AddTableDefinition(ContainerData.class);
-		AddTableDefinition(ContainerItem.class);
-		AddTableDefinition(Recipe.class);
-		AddTableDefinition(RecipeInputOutputData.class);
-		AddTableDefinition(InputOutputData.class);
-		AddTableDefinition(CraftingDeviceRecipe.class);
-		AddTableDefinition(CraftingDevice.class);
-		AddTableDefinition(InstanceCraftingDevice.class);
-		AddTableDefinition(InProgressCrafting.class);
-		AddTableDefinition(Weapon.class);
-		AddTableDefinition(RangedWeapon.class);
-		AddTableDefinition(MeleeWeapon.class);
-		AddTableDefinition(ProjectileWeapon.class);
-		AddTableDefinition(Loadout.class);
-		AddTableDefinition(Mission.class);
-		AddTableDefinition(MissionLoadout.class);
-		AddTableDefinition(MissionContainer.class);
+		classes.add(Item.class);
+		classes.add(Armour.class);
+		classes.add(Consumable.class);
+		classes.add(ContainerData.class);
+		classes.add(ContainerItem.class);
+		classes.add(Recipe.class);
+		classes.add(RecipeInputOutputData.class);
+		classes.add(InputOutputData.class);
+		classes.add(CraftingDeviceRecipe.class);
+		classes.add(CraftingDevice.class);
+		classes.add(InstanceCraftingDevice.class);
+		classes.add(InProgressCrafting.class);
+		classes.add(Weapon.class);
+		classes.add(RangedWeapon.class);
+		classes.add(MeleeWeapon.class);
+		classes.add(ProjectileWeapon.class);
+		classes.add(Loadout.class);
+		classes.add(Mission.class);
+		classes.add(MissionLoadout.class);
+		classes.add(MissionContainer.class);
 	}
 
 	public static void SaveData(ArrayList<String[]> data, String filePath) {
@@ -359,55 +343,69 @@ public class SurvivalGameDataExporter {
 	}
 
 	public static void main(String[] args) {
-		SaveRowData(Item.class, Item.items);
-		SaveRowData(Weapon.class, Weapon.weapons);
-		SaveRowData(RangedWeapon.class, RangedWeapon.rangedWeapons);
-		SaveRowData(MeleeWeapon.class, MeleeWeapon.meleeWeapons);
-		SaveRowData(ProjectileWeapon.class, ProjectileWeapon.ProjectileWeapons);
-		SaveRowData(Armour.class, Armour.armour);
-		SaveRowData(Loadout.class, Loadout.loadouts);
-		SaveRowData(ContainerData.class, ContainerData.ContainerData);
-		SaveRowData(Consumable.class, Consumable.Consumables);
-		SaveRowData(Mission.class, Mission.Missions);
-		SaveRowData(MissionLoadout.class, MissionLoadout.MissionLoadouts);
-		SaveRowData(MissionItems.class, MissionItems.MissionItems);
-		SaveRowData(MissionContainer.class, MissionContainer.MissionContainers);
-		SaveRowData(ContainerItem.class, ContainerItem.ContainerItems);
-		SaveRowData(Recipe.class, Recipe.recipes);
-		SaveRowData(InputOutputData.class, InputOutputData.inputOutputs);
-		SaveRowData(RecipeInputOutputData.class, RecipeInputOutputData.RecipeInputOutputData);
-		SaveRowData(CraftingDevice.class, CraftingDevice.craftingDevices);
-		SaveRowData(CraftingDeviceRecipe.class, CraftingDeviceRecipe.craftingDeviceRecipes);
-		SaveRowData(InstanceCraftingDevice.class, InstanceCraftingDevice.instanceCraftingDevices);
-		SaveRowData(InProgressCrafting.class, InProgressCrafting.inProgressCraftingData);
+		for (Class<?> clazz : classes) {
+			SaveRowData(clazz);
+		}
 	}
 
-	static <T extends RowData> void SaveRowData(Class<?> clazz, ArrayList<T> data) {
+	static void OutputTableDefinition(Class<?> clazz) {
+		TableDefinition td;
+
+		try {
+			td = (TableDefinition) clazz.getDeclaredField("Table_Definition").get(null);
+			System.out.println(td.toString());
+		} catch (IllegalArgumentException | IllegalAccessException | NoSuchFieldException | SecurityException e) {
+			e.printStackTrace();
+			System.out.println("Class" + clazz.getSimpleName() + " is missing table def");
+		}
+	}
+
+	static String GetClassTable(Class<?> clazz) {
+		String name = "Unknown";
+
+		try {
+			name = (String) clazz.getDeclaredField("TableName").get(null);
+		} catch (IllegalArgumentException | IllegalAccessException | NoSuchFieldException | SecurityException e) {
+			e.printStackTrace();
+		}
+		return name;
+	}
+
+	@SuppressWarnings("unchecked")
+	static <T extends RowData> ArrayList<T> GetClassData(Class<?> clazz) {
+
+		ArrayList<T> data = new ArrayList<>();
+
+		try {
+			data = (ArrayList<T>) clazz.getDeclaredField("Data").get(null);
+		} catch (IllegalArgumentException | IllegalAccessException | NoSuchFieldException | SecurityException e) {
+			e.printStackTrace();
+		}
+		return data;
+	}
+
+	static void SaveRowData(Class<?> clazz) {
+		OutputTableDefinition(clazz);
+		String tableName = GetClassTable(clazz);
+		ArrayList<RowData> data = GetClassData(clazz);
+
 		if (!data.isEmpty()) {
 			ArrayList<String[]> dataStrings = new ArrayList<String[]>();
 
-			T firstItem = data.get(0);
-			String tableName = firstItem.tableName;
-
-			if (tableDefinitions.containsKey(clazz)) {
-				System.out.println(tableDefinitions.get(clazz).toString());
-			} else {
-				System.out.println("Table" + tableName + " is missing table def");
-			}
-
-			for (T d : data) {
+			for (RowData d : data) {
 				dataStrings.add(CreateData(d));
 			}
+
 			SaveData(dataStrings, tablesFolder + tableName);
 		} else {
-// TODO make it possible to get the table path statically
-//			File csvOutputFile = new File(clazz.getDeclaredField("").get(null));
-//			if (!csvOutputFile.exists()) {
-//				FileWriter outputfile = new FileWriter(csvOutputFile);
-//				CSVWriter writer = new CSVWriter(outputfile);
-//				writer.writeAll(data);
-//				writer.close();
-//			}
+			File csvOutputFile = new File(tableName);
+			if (!csvOutputFile.exists()) {
+				try {
+					csvOutputFile.createNewFile();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
 
 			System.out.println("Table " + clazz.getSimpleName() + " is empty");
 		}

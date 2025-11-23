@@ -9,8 +9,8 @@ import com.belven.rpg.items.RowData;
 
 public class InProgressCrafting extends RowData {
 
-	public static String InProgressCraftingTable = "\\InProgressCrafting.csv";
-	public static ArrayList<InProgressCrafting> inProgressCraftingData = new ArrayList<>();
+	public static String TableName = "\\InProgressCrafting.csv";
+	public static ArrayList<InProgressCrafting> Data = new ArrayList<>();
 
 	public static TableDefinition Table_Definition = new TableDefinition("InProgressCrafting", "InProgressCrafting", new TableColumn("ID", ValueType.Integer),
 			new TableColumn("InstanceCraftingDeviceID", ValueType.Integer), new TableColumn("RecipeID", ValueType.Integer), new TableColumn("QueuePosition", ValueType.Integer),
@@ -31,9 +31,9 @@ public class InProgressCrafting extends RowData {
 	}
 
 	public InProgressCrafting() {
-		super(InProgressCraftingTable);
-		IncrementID(inProgressCraftingData);
-		inProgressCraftingData.add(this);
+		super(TableName);
+		IncrementID(Data);
+		Data.add(this);
 	}
 
 	@Override
@@ -49,7 +49,7 @@ public class InProgressCrafting extends RowData {
 
 	@Override
 	public int GetLastID() {
-		return GetLastID(inProgressCraftingData);
+		return GetLastID(Data);
 	}
 
 }

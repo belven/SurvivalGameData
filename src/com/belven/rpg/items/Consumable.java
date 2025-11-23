@@ -7,8 +7,8 @@ import com.belven.rpg.TableDefinition;
 import com.belven.rpg.ValueType;
 
 public class Consumable extends RowData {
-	public static String Consumable_Table = "\\ConsumableData.csv";
-	public static ArrayList<Consumable> Consumables = new ArrayList<Consumable>();
+	public static String TableName = "\\ConsumableData.csv";
+	public static ArrayList<Consumable> Data = new ArrayList<Consumable>();
 	private ConsumableData data;
 
 	public static TableDefinition Table_Definition = new TableDefinition("Consumable", "Consumable", new TableColumn("ID", ValueType.Integer), new TableColumn("ItemID", ValueType.Integer),
@@ -19,15 +19,15 @@ public class Consumable extends RowData {
 	}
 
 	public Consumable(ConsumableData inData) {
-		super(Consumable_Table);
-		IncrementID(Consumables);
+		super(TableName);
+		IncrementID(Data);
 		data = inData;
-		Consumables.add(this);
+		Data.add(this);
 	}
 
 	@Override
 	public int GetLastID() {
-		return GetLastID(Consumables);
+		return GetLastID(Data);
 	}
 
 	public static Consumable CreateConsumable(ItemData id, ConsumableData data) {

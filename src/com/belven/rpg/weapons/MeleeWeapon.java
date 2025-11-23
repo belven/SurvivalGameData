@@ -11,8 +11,8 @@ import com.belven.rpg.items.ItemType;
 import com.belven.rpg.items.RowData;
 
 public class MeleeWeapon extends RowData {
-	public static ArrayList<MeleeWeapon> meleeWeapons = new ArrayList<>();
-	public static String WeaponTable = "\\MeleeWeaponData.csv";
+	public static ArrayList<MeleeWeapon> Data = new ArrayList<>();
+	public static String TableName = "\\MeleeWeaponData.csv";
 
 	public static TableDefinition Table_Definition = new TableDefinition("MeleeWeapon", "MeleeWeapon", new TableColumn("ID", ValueType.Integer), new TableColumn("WeaponID", ValueType.Integer),
 			new TableColumn("CleaveRadius", ValueType.Float));
@@ -21,12 +21,12 @@ public class MeleeWeapon extends RowData {
 	float cleaveRadius;
 
 	public MeleeWeapon() {
-		super(WeaponTable);
-		if (meleeWeapons.size() > 0) {
+		super(TableName);
+		if (Data.size() > 0) {
 			ID = GetLastID() + 1;
 		}
 
-		meleeWeapons.add(this);
+		Data.add(this);
 	}
 
 	public String[] CreateData() {
@@ -53,6 +53,6 @@ public class MeleeWeapon extends RowData {
 
 	@Override
 	public int GetLastID() {
-		return meleeWeapons.get(meleeWeapons.size() - 1).ID;
+		return Data.get(Data.size() - 1).ID;
 	}
 }

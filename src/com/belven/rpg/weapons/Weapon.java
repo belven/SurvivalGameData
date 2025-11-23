@@ -9,8 +9,8 @@ import com.belven.rpg.items.GearType;
 import com.belven.rpg.items.RowData;
 
 public class Weapon extends RowData {
-	public static ArrayList<Weapon> weapons = new ArrayList<>();
-	public static String WeaponTable = "\\WeaponData.csv";
+	public static ArrayList<Weapon> Data = new ArrayList<>();
+	public static String TableName = "\\WeaponData.csv";
 
 	public static TableDefinition Table_Definition = new TableDefinition("WeaponData", "WeaponData", new TableColumn("ID", ValueType.Integer), new TableColumn("ItemID", ValueType.Integer),
 			new TableColumn("Type", ValueType.Enumeration, WeaponType.class.getSimpleName()), new TableColumn("GearType", ValueType.Enumeration, GearType.class.getSimpleName()),
@@ -19,10 +19,10 @@ public class Weapon extends RowData {
 	private WeaponData data;
 
 	public Weapon(WeaponData data) {
-		super(WeaponTable);
-		IncrementID(weapons);
+		super(TableName);
+		IncrementID(Data);
 		this.data = data;
-		weapons.add(this);
+		Data.add(this);
 	}
 
 	public static Weapon CreateWeapon(WeaponData data) {
@@ -44,7 +44,7 @@ public class Weapon extends RowData {
 
 	@Override
 	public int GetLastID() {
-		return GetLastID(weapons);
+		return GetLastID(Data);
 	}
 
 	public WeaponData GetData() {
